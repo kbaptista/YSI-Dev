@@ -1,0 +1,15 @@
+{
+  "name": "ysi-project",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kbaptista/YSI-Dev.git"
+  },
+  "description" : "CDP M2 project, scrum tool",
+  "dependencies": {
+    "express" : "~4.5.1",
+    "mongoose" : "~3.8.0",
+    "body-parser" : "~1.4.2",
+    "method-override" : "~2.0.2"
+  }
+}
