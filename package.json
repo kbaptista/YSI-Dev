@@ -1,15 +1,28 @@
 {
   "name": "ysi-project",
+  "version": "0.0.1",
+  "description": "A REST API for the Master2 CDP class project Scrum Tool",
   "main": "server.js",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.15.2",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.1",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "express-session": "^1.14.1",
+    "mongoose": "^4.6.5",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kbaptista/YSI-Dev.git"
   },
-  "description" : "CDP M2 project, scrum tool",
-  "dependencies": {
-    "express" : "~4.5.1",
-    "mongoose" : "~3.8.0",
-    "body-parser" : "~1.4.2",
-    "method-override" : "~2.0.2"
-  }
+  "author": "Kevin Baptista, Timothée Picard & Walid Manouni",
+  "license": "MIT"
 }

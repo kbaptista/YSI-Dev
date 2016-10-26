@@ -1,3 +1,3 @@
-/**
- * Created by Timothée on 20/10/2016.
- */
+module.exports = {
+    url: 'mongodb://localhost/ysi'
+};
