@@ -8,3 +8,9 @@ exports.logout = function(req, res){
   req.logout();
   res.status(200).send();
 };
+
+exports.passportLogin = passport.authenticate('local-login',{
+  successRedirect: '/welcome',
+  failureRedirect: '/login',
+  failureFlash: true
+});

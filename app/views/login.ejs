@@ -4,6 +4,9 @@
     <title>Node Authentication</title>
 </head>
 <body>
+<% if (message) {%>
+<p><%= message%></p>
+<% } %>
 <form action="/login" method="post">
     <label>Email</label>
     <input type="text" class="form-control" name="email">

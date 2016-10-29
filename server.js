@@ -3,6 +3,8 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
 
+var authentication = require('./app/middleware/authentication');
+
 var cors = require ('cors');
 var passport = require('passport');
 var mongoose = require('mongoose');
@@ -47,5 +49,13 @@ app.get('/signup',signup.showSignupPage);
 
 app.post('/signup', signup.passportSignup);
 app.get('/welcome', signup.welcome);
+
+app.post('/login', login.passportLogin);
+app.get('/logout',login.logout);
+
+/* Test du middleware logged in */
+app.get('/profile',authentication.isAuthenticated(), function(req,res){
+   res.send('Logged in');
+});
 
 app.listen(port);
