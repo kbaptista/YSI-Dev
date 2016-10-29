@@ -23,6 +23,8 @@ var corsOptions = {
     credentials: true
 };
 
+require('./app/middleware/passport')(passport);
+
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -31,14 +33,19 @@ app.use(session({
     resave : true,
     saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.set('views', __dirname + '/app/views');
 app.set('view engine','ejs');
 
 app.use(cors(corsOptions));
-app.use(flash());
 
 app.get('/login',login.showLoginPage);
 app.get('/signup',signup.showSignupPage);
+
+app.post('/signup', signup.passportSignup);
+app.get('/welcome', signup.welcome);
 
 app.listen(port);
