@@ -18,6 +18,9 @@ node_modules
 .idea/dynamic.xml
 .idea/uiDesigner.xml
 
+# public librairy
+/public/libs/*
+
 # Gradle:
 .idea/gradle.xml
 .idea/libraries
