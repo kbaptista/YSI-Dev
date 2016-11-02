@@ -51,7 +51,6 @@ app.get('/signup',signup.showSignupPage);
 app.get('/project',project.showProjectPage);
 
 app.post('/signup', signup.passportSignup);
-app.post('/project', project.passportProject);
 app.get('/welcome', signup.welcome);
 
 app.post('/login', login.passportLogin);
