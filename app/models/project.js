@@ -5,7 +5,11 @@ projectSchema.add({
     idProductOwner : String,
     idScrumMaster : String,
     idDeveloppers : [],
-    startDate : Date
+    startDate : Date,
+    nbSprint : Number,
+    dureeSprint : Number,
+    name : String,
+    description : String
 });
 
 var Project = mongoose.model('Project',projectSchema);
