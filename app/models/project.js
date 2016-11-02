@@ -5,6 +5,7 @@ projectSchema.add({
     idProductOwner : String,
     idScrumMaster : String,
     idDeveloppers : [],
+    idUS : [],
     startDate : Date,
     nbSprint : Number,
     dureeSprint : Number,
