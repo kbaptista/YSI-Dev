@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+</head>
+<body>
+<% if (message) {%>
+<p><%= message%></p>
+<% } %>
+<form action="/project" method="post">
+    <label>Nom du projet</label><br>
+    <input type="text" class="form-control" name="name"><br>
+    <label>Description</label><br>
+    <textarea rows="5"></textarea><br>
+    <label>Nbr Sprint</label><br>
+    <input type="text" class="form-control" name="NbrSprint"><br>
+    <label>Durée Sprint</label><br>
+    <input type="text" class="form-control" name="DureeSprint"><br>
+    <label>Date début</label><br>
+    <input type="text" class="form-control" name="DateDebut"><br>
+    <button type="submit" class="btn btn-warning btn-lg">Add project</button><br>
+</form>
+</body>
+</html>
