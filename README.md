@@ -36,6 +36,13 @@ mongod
 sudo service mongod start
 ```
 
+
+### Lancer le serveur nodejs
+Exécuter la commande suivante dans le répertoire YSI_Dev :
+```
+node server.js
+```
+
 ### Vérifier que YSI_Dev est fonctionnel
 
 Ouvrir son navigateur à `http://localhost:3000/login` et il devrait y avoir une interface de login. 
