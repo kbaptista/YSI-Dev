@@ -18,6 +18,7 @@ var port = process.env.PORT || 3000;
 var login = require('./app/routes/login');
 var signup = require('./app/routes/signup');
 var user = require('./app/routes/user');
+var project = require('./app/routes/project');
 
 var app = express();
 var corsOptions = {
@@ -47,8 +48,10 @@ app.use(cors(corsOptions));
 
 app.get('/login',login.showLoginPage);
 app.get('/signup',signup.showSignupPage);
+app.get('/project',project.showProjectPage);
 
 app.post('/signup', signup.passportSignup);
+app.post('/project', project.passportProject);
 app.get('/welcome', signup.welcome);
 
 app.post('/login', login.passportLogin);
