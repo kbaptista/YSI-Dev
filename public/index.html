@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <base href="/">
+
     <title>YSI - Team#5</title>
     <link rel="stylesheet" href="/YSI-Dev/public/libs/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/YSI-Dev/public/css/app.css">
@@ -16,13 +16,15 @@
     <script src="/YSI-Dev/public/js/controllers/user.controller.js"></script>
     <script src="/YSI-Dev/public/js/controllers/login.controller.js"></script>
     <script src="/YSI-Dev/public/js/controllers/register.controller.js"></script>
-    <script src="/YSI-Dev/public/js/services/user.service.js"></script>
+    <script src="/YSI-Dev/public/js/controllers/project.controller.js"></script>
+    <script src="/YSI-Dev/public/js/services/authentication.service.js"></script>
+    <script src="/YSI-Dev/public/js/services/project.service.js"></script>
     <script src="/YSI-Dev/public/js/appRoutes.js"></script>
     <script src="/YSI-Dev/public/js/app.js"></script>
 
 </head>
 
-<body ng-app="ysi-app" ng-controller="UserController">
+<body ng-app="ysi-app">
 <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
@@ -32,24 +34,22 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/home">YSI</a>
+            <a class="navbar-brand" href="#/home">YSI</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="/home">Home</a></li>
-                <li><a href="/projects">Projects</a></li>
-                <li><a href="/about">About</a></li>
+                <li><a href="#/home">Home</a></li>
+                <li><a href="#/project">Projects</a></li>
+                <li><a href="#/about">About</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/login">Login</a></li>
-                <li><a href="/signup">Signup</a></li>
+                <li><a href="#/login">Login</a></li>
+                <li><a href="#/signup">Signup</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </nav>
 <div ng-view></div>
-
-
 
 <script src="/YSI-Dev/public/libs/jquery/dist/jquery.js"></script>
 <script src="/YSI-Dev/public/libs/bootstrap/dist/js/bootstrap.js"></script>

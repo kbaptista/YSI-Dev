@@ -1,4 +1,4 @@
-angular.module('appRoutes',[]).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider){
+angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider){
     $routeProvider
         .when('/home', {
             templateUrl: '/YSI-Dev/public/views/home.html',
@@ -18,9 +18,13 @@ angular.module('appRoutes',[]).config(['$routeProvider', '$locationProvider', fu
         .when('/signup', {
             templateUrl : '/YSI-Dev/public/views/signup.html',
             controller: 'RegisterController'
-        });
+        })
 
-        //.otherwise({redirectTo : '/home'});
+        .when('/project',{
+            templateUrl: '/YSI-Dev/public/views/project.html',
+            controller: 'ProjectController'
+        })
 
-    $locationProvider.html5Mode(true);
+        .otherwise({redirectTo : '/home'});
+
 }]);

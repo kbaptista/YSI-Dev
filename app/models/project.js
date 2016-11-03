@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var projectSchema = new mongoose.schema();
+var projectSchema = new mongoose.Schema();
 projectSchema.add({
     idProductOwner : String,
     idScrumMaster : String,
