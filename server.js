@@ -18,7 +18,7 @@ var port = process.env.PORT || 3000;
 var login = require('./app/routes/login');
 var signup = require('./app/routes/signup');
 var user = require('./app/routes/user');
-var project = require('./app/routes/project');
+//var project = require('./app/routes/project');
 
 var app = express();
 var corsOptions = {
@@ -48,15 +48,16 @@ app.use(cors(corsOptions));
 
 app.get('/login',login.showLoginPage);
 app.get('/signup',signup.showSignupPage);
-app.get('/project',project.showProjectPage);
 
 app.post('/signup', signup.passportSignup);
 app.get('/welcome', signup.welcome);
 
 app.post('/login', login.passportLogin);
-app.get('/logout',login.logout);
+app.post('/logout',login.logout);
 
-app.get('/users',user.allUsers);
+app.get('/loggedin', login.loggedIn);
+
+app.get('/users',authentication.isAuthenticated(),user.allUsers);
 app.get('/user/:id',user.findById);
 
 /* Test du middleware logged in */

@@ -14,3 +14,7 @@ exports.passportLogin = passport.authenticate('local-login',{
   failureRedirect: '/login',
   failureFlash: true
 });
+
+exports.loggedIn = function(req,res){
+  res.send(req.isAuthenticated()? req.user : '0');
+};
