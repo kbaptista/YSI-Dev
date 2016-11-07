@@ -25,6 +25,20 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             controller: 'ProjectController'
         })
 
+        .when('/charts',{
+            templateUrl: '/YSI-Dev/public/views/charts.html',
+            controller: 'ChartsController'
+        })
+
+        .when('/team',{
+            templateUrl: '/YSI-Dev/public/views/team.html',
+            controller: 'TeamController'
+        })
+
+        .when('/about',{
+            templateUrl: '/YSI-Dev/public/views/about.html',
+        })
+
         .otherwise({redirectTo : '/home'});
 
 }]);
