@@ -1,6 +1,7 @@
-angular.module('UsCtrl',[]).controller('UsController',['$scope','$location', 'UsService','$route', function($scope,$location, UsService,$route){
+angular.module('UsCtrl',[]).controller('UsController',['$scope','$location', 'UsService','$route','$routeParams', function($scope,$location, UsService,$route,$routeParams){
+var id_project = $routeParams.id;
 
-    UsService.getUs().success(function(data){
+    UsService.getUs(id_project).success(function(data){
         $scope.userStories = data;
     })
         .error(function(status,data){
@@ -10,9 +11,8 @@ angular.module('UsCtrl',[]).controller('UsController',['$scope','$location', 'Us
 
 
     $scope.createUserStories = function createUserStories(name,desc,effort,priority){
-        console.log(name);
         if(name !== undefined && desc !== undefined && effort !== undefined && priority !== undefined){
-            UsService.createUserStories(name,desc,effort,priority).success(function(data){
+            UsService.createUserStories(name,desc,effort,priority,id_project).success(function(data){
                 $route.reload();
                 $('#modalCreateUserStory').modal('hide');
             })

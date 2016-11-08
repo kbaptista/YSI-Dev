@@ -69,7 +69,7 @@ app.get('/projects',project.allProjects);
 app.get('/projects/:id', project.findById);
 app.post('/projects', project.createProject);
 
-app.get('/userStories',usersStories.allUs);
+app.get('/userStories/:id',usersStories.UsFromProject);
 app.post('/userStories',usersStories.createUserStories);
 
 
