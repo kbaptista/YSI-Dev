@@ -13,7 +13,11 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" ng-submit="createUserStories(us.description,us.effort,us.priority)">
+                    <form method="post" ng-submit="createUserStories(us.name,us.description,us.effort,us.priority)">
+                        <div class="form-group">
+                            <label for="UsName">Name</label>
+                            <input type="text" class="form-control" id="UsName" ng-model="us.name">
+                        </div>
                         <div class="form-group">
                             <label for="UsDescription">Description</label>
                             <textarea class="form-control" id="UsDescription" placeholder="Description" ng-model="us.description" rows="3"></textarea>
@@ -37,4 +41,24 @@
 
         </div>
     </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Effort</th>
+            <th>Priority</th>
+            <th>Task</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="us in userStories">
+            <td>{{us.name}}</td>
+            <td>{{us.description}}</td>
+            <td>{{us.effort}}</td>
+            <td>{{us.priority}}</td>
+            <td>Add Task</td>
+        </tr>
+        </tbody>
+    </table>
 </div>
