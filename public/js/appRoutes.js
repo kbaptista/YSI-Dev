@@ -36,7 +36,7 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
         })
 
         .when('/about',{
-            templateUrl: '/YSI-Dev/public/views/about.html',
+            templateUrl: '/YSI-Dev/public/views/about.html'
         })
 
         .when('/project/:id',{
