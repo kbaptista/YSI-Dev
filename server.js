@@ -19,6 +19,7 @@ var login = require('./app/routes/login');
 var signup = require('./app/routes/signup');
 var user = require('./app/routes/user');
 var project = require('./app/routes/project');
+var usersStories = require('./app/routes/userStories');
 
 var app = express();
 var corsOptions = {
@@ -63,6 +64,8 @@ app.get('/user/:id',user.findById);
 app.get('/projects',project.allProjects);
 app.get('/projects/:id', project.findById);
 app.post('/projects', project.createProject);
+
+app.post('/userStories', userStories.createUserStories);
 
 /* Test du middleware logged in */
 app.get('/profile',authentication.isAuthenticated(), function(req,res){
