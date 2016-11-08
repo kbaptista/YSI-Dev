@@ -14,13 +14,6 @@
             counter-increment: section;
             content:"T" counter(section)" = ";
         }
-        table{
-            counter-reset: taskid;
-        }
-        p::before{
-            counter-increment: taskid;
-            content:"T" counter(taskid);
-        }
     </style>
 </head>
 <body>
@@ -60,11 +53,6 @@
         <li class="list-group-item">Création de la requête http (côté Angular) pour ajouter des tâches au sprint backlog + controller</li>
     </ul>
     
-<!--
-    le contenu des balises <p></p> au sein de la table sera précédé de TX,
-    où X est le numéro de la tache, de manière automatique.
--->
-    
     <table class="table table-bordered">
         <thead>
         <tr class="active">
@@ -84,9 +72,9 @@
         <tr>
             <th scope="row">US#1</th>
             <th>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>T01</p>
+                <p>T02</p>
+                <p>T03</p>
             </th>
             <th></th>
             <th></th>
@@ -94,9 +82,9 @@
         <tr>
             <th scope="row">US#2</th>
             <th>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>T04</p>
+                <p>T05</p>
+                <p>T06</p>
             </th>
             <th></th>
             <th></th>
@@ -104,9 +92,9 @@
         <tr>
             <th scope="row">US#5</th>
             <th>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>T07</p>
+                <p>T08</p>
+                <p>T09</p>
             </th>
             <th></th>
             <th></th>
@@ -114,9 +102,9 @@
         <tr>
             <th scope="row">US#6</th>
             <th>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>T10</p>
+                <p>T11</p>
+                <p>T12</p>
             </th>
             <th></th>
             <th></th>
@@ -124,9 +112,9 @@
         <tr>
             <th scope="row">US#7</th>
             <th>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>T13</p>
+                <p>T14</p>
+                <p>T15</p>
            </th>
             <th></th>
             <th></th>
@@ -134,8 +122,8 @@
         <tr>
             <th scope="row">US#8</th>
             <th>
-                <p></p>
-                <p></p>
+                <p>T16</p>
+                <p>T17</p>
            </th>
             <th></th>
             <th></th>
@@ -143,8 +131,8 @@
         <tr>
             <th scope="row">US#9</th>
             <th>
-                <p></p>
-                <p></p>
+                <p>T18</p>
+                <p>T19</p>
            </th>
             <th></th>
             <th></th>
@@ -152,9 +140,9 @@
         <tr>
             <th scope="row">US#10</th>
             <th>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>T20</p>
+                <p>T21</p>
+                <p>T22</p>
            </th>
             <th></th>
             <th></th>
@@ -162,9 +150,9 @@
         <tr>
             <th scope="row">US#11</th>
             <th>
-                <p></p>
-                <p></p>
-                <p></p>
+                <p>T23</p>
+                <p>T24</p>
+                <p>T25</p>
            </th>
             <th></th>
             <th></th>
