@@ -39,6 +39,12 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             templateUrl: '/YSI-Dev/public/views/about.html',
         })
 
+        .when('/project/:id',{
+            templateUrl: '/YSI-Dev/public/views/backlog.html',
+            controller: 'UsController'
+        })
+
+
         .otherwise({redirectTo : '/home'});
 
 }]);

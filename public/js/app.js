@@ -8,5 +8,7 @@ angular.module('ysi-app',
         'RegisterCtrl',
         'ngResource',
         'ProjectCtrl',
-        'ProjectServ'
+        'ProjectServ',
+        'UsCtrl',
+        'UsServ'
     ]);
