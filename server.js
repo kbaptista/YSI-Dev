@@ -69,7 +69,7 @@ app.get('/projects',project.allProjects);
 app.get('/projects/:id', project.findById);
 app.post('/projects', project.createProject);
 
-app.post('/userStories', userStories.createUserStories);
+app.post('/userStories', usersStories.createUserStories);
 
 
 app.listen(port);
