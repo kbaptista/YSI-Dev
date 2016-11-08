@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Kanban</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    <link rel="stylesheet" href="../../public/libs/bootstrap/dist/css/bootstrap.css">
+    <style>
+        ul {
+            counter-reset: section;
+        }
+
+        li::before {
+            counter-increment: section;
+            content:"T" counter(section)" = ";
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>KanBan Equipe #5</h1>
+        <a href="tracabilite.html"><button class="btn btn-default">Traçabilité Sprint 2</button></a>
+    <a target="_blank" href="https://github.com/kbaptista/YSI-Dev"><button class="btn btn-default">Dépot Dev</button></a>
+    <a target="_blank"  href="https://github.com/kbaptista/YSI-Demo"><button class="btn btn-default">Dépot Démo</button></a>
+       <h3>Rappel des Taches</h3>
+        <ul class="list-group">
+<!--
+        chaque <li></li> sera précédé de TX = ,
+        où X est le numéro de la tache.
+-->
+        <li class="list-group-item">Création de la view d'inscription d'un utilisateur</li>
+        <li class="list-group-item">Création de la route (côté nodejs) pour s'inscrire</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour s'inscrire + controller</li>
+        <li class="list-group-item">Création de la view de connexion d'un utilisateur</li>
+        <li class="list-group-item">Création de la route (côté nodejs) pour se connecter</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour se connecter + controller</li>
+        <li class="list-group-item">Création de la view pour gérer les membres d'un projet</li>
+        <li class="list-group-item">Création de la route (côté nodejs) pour ajouter un membre à un projet</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour ajouter un membre à un projet + controller</li>
+        <li class="list-group-item">Création de la view pour créer un product backlog (ajouter des US)</li>
+        <li class="list-group-item">Création de la route (côté nodejs) pour ajouter des US au product backlog</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour ajouter des US au product backlog + controller</li>
+        <li class="list-group-item">Création de la view pour visualiser les US d'un projet</li>
+        <li class="list-group-item">Création de la route (côté nodejs) pour visualiser les US d'un projet</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour visualiser les US d'un projet + controller</li>
+        <li class="list-group-item">Création de la route (côté nodejs) pour supprimer une US</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour supprimer une US</li>
+        <li class="list-group-item">Création de la route (côté nodejs) pour modifier une US</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour modifier une US + controller</li>
+        <li class="list-group-item">Création de la view pour créer un sprint backlog (ajouter des US)</li>
+        <li class="list-group-item">Création de la route (côté nodejs) pour ajouter des US au sprint backlog</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour ajouter des US au sprint backlog + controller</li>
+        <li class="list-group-item">Création de la view pour ajouter une tâche au sprint backlog</li>
+        <li class="list-group-item">Création de la view pour ajouter une tâche au sprint backlog</li>
+        <li class="list-group-item">Création de la requête http (côté Angular) pour ajouter des tâches au sprint backlog + controller</li>
+    </ul>
+    
+    <table class="table table-bordered">
+        <thead>
+        <tr class="active">
+            <th></th>
+            <th>Todo</th>
+            <th>On Going</th>
+            <th>Done</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th scope="row">All</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#1</th>
+            <th>
+                <p>T01</p>
+                <p>T02</p>
+                <p>T03</p>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#2</th>
+            <th>
+                <p>T04</p>
+                <p>T05</p>
+                <p>T06</p>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#5</th>
+            <th>
+                <p>T07</p>
+                <p>T08</p>
+                <p>T09</p>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#6</th>
+            <th>
+                <p>T10</p>
+                <p>T11</p>
+                <p>T12</p>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#7</th>
+            <th>
+                <p>T13</p>
+                <p>T14</p>
+                <p>T15</p>
+           </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#8</th>
+            <th>
+                <p>T16</p>
+                <p>T17</p>
+           </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#9</th>
+            <th>
+                <p>T18</p>
+                <p>T19</p>
+           </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#10</th>
+            <th>
+                <p>T20</p>
+                <p>T21</p>
+                <p>T22</p>
+           </th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <th scope="row">US#11</th>
+            <th>
+                <p>T23</p>
+                <p>T24</p>
+                <p>T25</p>
+           </th>
+            <th></th>
+            <th></th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

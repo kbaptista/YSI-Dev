@@ -21,6 +21,7 @@ var signup = require('./app/routes/signup');
 var user = require('./app/routes/user');
 var project = require('./app/routes/project');
 var authenticate = require('./app/routes/authenticate');
+var usersStories = require('./app/routes/userStories');
 
 var app = express();
 var corsOptions = {
@@ -67,6 +68,8 @@ app.get('/user/:id',user.findById);
 app.get('/projects',project.allProjects);
 app.get('/projects/:id', project.findById);
 app.post('/projects', project.createProject);
+
+app.post('/userStories', userStories.createUserStories);
 
 
 app.listen(port);

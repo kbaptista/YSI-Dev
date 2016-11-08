@@ -60,7 +60,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="project in projects">
-            <td>{{project.name}}</td>
+            <td><a href="#/project/{{project._id}}">{{project.name}}</a></td>
             <td>{{project.description}}</td>
             <td>{{project.po}}</td>
             <td></td>
