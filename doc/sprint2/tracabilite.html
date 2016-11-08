@@ -12,7 +12,7 @@
 
         li::before {
             counter-increment: section;
-            content:"T" counter(section)" = ";
+            content:"US" counter(section)" = ";
         }
         tr{
             counter-increment: idUS;
@@ -33,15 +33,19 @@
         où X est le numéro de l'US.
 -->
            
-            <li class="list-group-item">En tant que dev, je souhaite pouvoir m'inscire sur l'application (adresse email)</li>
-            <li class="list-group-item">En tant que dev, je souhaite pouvoir me connecter à l'application </li>
-            <li class="list-group-item">En tant que dev, je souhaite créer un product backlog en y ajoutant des US</li>
-            <li class="list-group-item">En tant que dev, je souhaite consulter les US d'un projet</li>
-            <li class="list-group-item">En tant que dev, je souhaite supprimer une US du product backlog</li>
-            <li class="list-group-item">En tant que dev, je souhaite modifier une US du product backlog</li>
-            <li class="list-group-item">En tant que dev, je souhaire créer un sprint backlog et y assigner des US afin d'obtenir un planning</li>
-            <li class="list-group-item">En tant que dev, je souhaite créer /ajouter des tâches à une US du sprint</li>
+            <li class="list-group-item">En tant que visiteur, je souhaite pouvoir m'inscire sur l'application (adresse email)</li>
+            <li class="list-group-item">En tant que visiteur, je souhaite pouvoir me connecter à l'application </li>
+            <li class="list-group-item">En tant que collaborateur, je souhaite créer un product backlog avec une US "All" par défaut</li>
+            <li class="list-group-item">En tant que collaborateur, je souhaite ajouter des US au product backlog</li>
+            <li class="list-group-item">En tant que visiteur, je souhaite consulter les US d'un projet</li>
+            <li class="list-group-item">En tant que collaborateur, je souhaite supprimer une US du product backlog</li>
+            <li class="list-group-item">En tant que collaborateur, je souhaite modifier une US du product backlog</li>
+            <li class="list-group-item">En tant que collaborateur, je souhaire créer un sprint backlog et y assigner des US afin d'obtenir un planning</li>
+            <li class="list-group-item">En tant que collaborateur, je souhaite ajouter des tâches à une US du sprint</li>
     </ul>
+    <p> Visiteur = Utilisateur non-connecté </br> 
+    Dévelopeur (dev) = Utilisateur connecté avec son compte </br>
+    Collaborateur = Developpeur affilié au projet </p>
     
     <table class="table table-bordered">
         <thead>
