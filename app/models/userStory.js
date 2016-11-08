@@ -6,7 +6,8 @@ usSchema.add({
     description : String,
     effort : String,
     priority : String,
-    idTasks : []
+    idTasks : [],
+    idProject : ObjectId
 });
 
 var UserStroy = mongoose.model('UserStroy',projectSchema);
