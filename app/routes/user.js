@@ -1,4 +1,7 @@
-var User = require('../models/user').model;
+var User = require('../models/user');
+var auth = require('../middleware/authentication');
+var jwt = require('jwt-simple');
+var config = require('../../config/db');
 
 exports.allUsers = function(req, res){
     User.find({}, function(err,docs){
@@ -38,5 +41,25 @@ exports.findById = function(req,res){
     } catch(e){
         console.log(e);
         res.send(500);
+    }
+};
+
+exports.getInfo = function(req, res){
+  var token = auth.getToken(req.headers);
+    if (token) {
+        var decoded = jwt.decode(token, config.secret);
+        User.findOne({
+            name: decoded.name
+        }, function(err, user) {
+            if (err) throw err;
+
+            if (!user) {
+                return res.status(403).send({success: false, msg: 'Authentication failed. User not found.'});
+            } else {
+                res.json({success: true, msg: 'Welcome in the member area ' + user.name + '!'});
+            }
+        });
+    } else {
+        return res.status(403).send({success: false, msg: 'No token provided.'});
     }
 };

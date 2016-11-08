@@ -1,3 +1,4 @@
 module.exports = {
-    url: 'mongodb://localhost/ysi'
+    'url': 'mongodb://localhost/ysi',
+    'secret' : 'ysiprojectsecret'
 };

@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var cookieParser = require('cookie-parser');
+var jwt = require ('jwt-simple');
 
 var authentication = require('./app/middleware/authentication');
 
@@ -19,6 +20,7 @@ var login = require('./app/routes/login');
 var signup = require('./app/routes/signup');
 var user = require('./app/routes/user');
 var project = require('./app/routes/project');
+var authenticate = require('./app/routes/authenticate');
 
 var app = express();
 var corsOptions = {
@@ -49,24 +51,22 @@ app.use(cors(corsOptions));
 app.get('/login',login.showLoginPage);
 app.get('/signup',signup.showSignupPage);
 
-app.post('/signup', signup.passportSignup);
-app.get('/welcome', signup.welcome);
+app.post('/signup', signup.jwtSignup);
+app.post('/authenticate', authenticate.getAuthentication);
+app.get('/memberinfo', passport.authenticate('jwt', { session : false}), user.getInfo);
+//app.get('/welcome', signup.welcome);
 
 app.post('/login', login.passportLogin);
 app.post('/logout',login.logout);
 
 app.get('/loggedin', login.loggedIn);
 
-app.get('/users',authentication.isAuthenticated(),user.allUsers);
+app.get('/users',user.allUsers);
 app.get('/user/:id',user.findById);
 
 app.get('/projects',project.allProjects);
 app.get('/projects/:id', project.findById);
 app.post('/projects', project.createProject);
 
-/* Test du middleware logged in */
-app.get('/profile',authentication.isAuthenticated(), function(req,res){
-   res.send('Logged in');
-});
 
 app.listen(port);

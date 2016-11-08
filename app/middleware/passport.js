@@ -1,7 +1,26 @@
-var localStrategy = require('passport-local').Strategy;
-var User = require('../models/user').model;
+//var localStrategy = require('passport-local').Strategy;
+var jwtStrategy = require('passport-jwt').Strategy;
+var User = require('../models/user');
+var config = require('../../config/db');
 
-module.exports = function(passport){
+module.exports = function(passport) {
+    var opts = {};
+    opts.secretOrKey = config.secret;
+    passport.use(new jwtStrategy(opts, function(jwt_payload, done) {
+        User.findOne({id: jwt_payload.id}, function(err, user) {
+            if (err) {
+                return done(err, false);
+            }
+            if (user) {
+                done(null, user);
+            } else {
+                done(null, false);
+            }
+        });
+    }));
+};
+
+/*module.exports = function(passport){
     passport.serializeUser(function(user,done){
         done(null,user.id);
     });
@@ -65,4 +84,5 @@ module.exports = function(passport){
                 });
             });
     }));
-};
+}; */
+
