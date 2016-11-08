@@ -1,11 +1,11 @@
-angular.module('UsServ', []).factory('UsService', function($http){
+angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
 
     return{
 
         getUs: function(id_project){
             return $http({
                 method: 'GET',
-                url: 'http://localhost:3000/userStories/'+id_project
+                url: API_ENDPOINT.url + '/userStories/'+id_project
             });
         },
 
@@ -20,7 +20,7 @@ angular.module('UsServ', []).factory('UsService', function($http){
             });
             return $http({
                 method: 'POST',
-                url: 'http://localhost:3000/userStories/',
+                url: API_ENDPOINT.url + '/userStories',
                 headers: {'Content-Type' : 'application/json'},
                 data: dataJson
             });

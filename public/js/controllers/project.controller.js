@@ -1,4 +1,4 @@
-angular.module('ProjectCtrl',[]).controller('ProjectController',['$scope','$location', 'ProjectService','$route', function($scope,$location, ProjectService,$route){
+angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route){
     ProjectService.getProjects().success(function(data){
         $scope.projects = data;
     })
@@ -19,4 +19,4 @@ angular.module('ProjectCtrl',[]).controller('ProjectController',['$scope','$loca
                 });
         }
     }
-}]);
+});

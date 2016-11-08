@@ -1,4 +1,4 @@
-angular.module('AuthService', []).factory('AuthenticationService', function($http, $q){
+angular.module('AuthService', []).factory('AuthenticationService', function($http, $q, API_ENDPOINT){
     var LOCAL_TOKEN_KEY = 'tokenKey';
     var isAuthenticated = false;
     var authToken;
@@ -30,7 +30,7 @@ angular.module('AuthService', []).factory('AuthenticationService', function($htt
 
     var register = function(user){
         return $q(function(resolve,reject){
-            $http.post('http://localhost:3000/signup', user).then(function(result){
+            $http.post(API_ENDPOINT.url + '/signup', user).then(function(result){
                 if(result.data.success){
                     resolve(result.data.msg);
                 }
@@ -43,7 +43,7 @@ angular.module('AuthService', []).factory('AuthenticationService', function($htt
 
     var login = function(user){
         return $q(function(resolve,reject){
-            $http.post('http://localhost:3000/authenticate',user).then(function(result){
+            $http.post(API_ENDPOINT.url + '/authenticate',user).then(function(result){
                 if(result.data.success){
                     storeUserCredentials(result.data.token);
                     resolve(result.data.msg);

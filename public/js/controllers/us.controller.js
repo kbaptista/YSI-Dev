@@ -1,4 +1,4 @@
-angular.module('UsCtrl',[]).controller('UsController',['$scope','$location', 'UsService','$route','$routeParams', function($scope,$location, UsService,$route,$routeParams){
+angular.module('UsCtrl',[]).controller('UsController', function($scope,$location, UsService,$route,$routeParams){
 var id_project = $routeParams.id;
 
     UsService.getUs(id_project).success(function(data){
@@ -22,4 +22,4 @@ var id_project = $routeParams.id;
                 });
         }
     }
-}]);
+});

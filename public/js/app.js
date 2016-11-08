@@ -10,5 +10,6 @@ angular.module('ysi-app',
         'ProjectCtrl',
         'ProjectServ',
         'UsCtrl',
-        'UsServ'
+        'UsServ',
+        'ConstantModule'
     ]);

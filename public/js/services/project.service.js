@@ -1,9 +1,9 @@
-angular.module('ProjectServ', []).factory('ProjectService', function($http){
+angular.module('ProjectServ', []).factory('ProjectService', function($http, API_ENDPOINT){
         return{
             getProjects: function(){
                 return $http({
                         method: 'GET',
-                        url: 'http://localhost:3000/projects'
+                        url: API_ENDPOINT.url + '/projects'
                     });
             },
 
@@ -17,7 +17,7 @@ angular.module('ProjectServ', []).factory('ProjectService', function($http){
                 });
                 return $http({
                     method: 'POST',
-                    url: 'http://localhost:3000/projects',
+                    url: API_ENDPOINT.url + '/projects',
                     headers: {'Content-Type' : 'application/json'},
                     data: dataJson
                 });
