@@ -1,8 +1,7 @@
 angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider){
     $routeProvider
         .when('/home', {
-            templateUrl: '/YSI-Dev/public/views/home.html',
-            controller : 'MainController'
+            templateUrl: '/YSI-Dev/public/views/home.html'
         })
 
         .when('/users', {

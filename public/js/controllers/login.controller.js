@@ -6,7 +6,7 @@ angular.module('LoginCtrl',[]).controller('LoginController', function($scope,Aut
 
     $scope.login = function(){
         AuthenticationService.login($scope.user).then(function(msg){
-        $location.path('/about');
+        $location.path('/home');
         }, function(error){
             console.log(error);
         });

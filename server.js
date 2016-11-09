@@ -55,12 +55,9 @@ app.get('/signup',signup.showSignupPage);
 app.post('/signup', signup.jwtSignup);
 app.post('/authenticate', authenticate.getAuthentication);
 app.get('/memberinfo', passport.authenticate('jwt', { session : false}), user.getInfo);
-//app.get('/welcome', signup.welcome);
+app.get('/getName', passport.authenticate('jwt', { session : false}), user.getName);
 
-app.post('/login', login.passportLogin);
 app.post('/logout',login.logout);
-
-app.get('/loggedin', login.loggedIn);
 
 app.get('/users',user.allUsers);
 app.get('/user/:id',user.findById);

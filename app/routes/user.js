@@ -50,6 +50,7 @@ exports.getInfo = function(req, res){
         var decoded = jwt.decode(token, config.secret);
         User.findOne({
             name: decoded.name
+
         }, function(err, user) {
             if (err) throw err;
 
@@ -61,5 +62,27 @@ exports.getInfo = function(req, res){
         });
     } else {
         return res.status(403).send({success: false, msg: 'No token provided.'});
+    }
+};
+
+exports.getName = function(req, res){
+    var token = auth.getToken(req.headers);
+    if(token){
+        var decoded = jwt.decode(token, config.secret);
+        User.findOne({
+            name: decoded.name
+        }, function(err,user){
+            if(err) throw err;
+
+            if(!user){
+                return res.status(403).send({msg: 'Auth failed. User not fount'});
+            }
+            else{
+                res.status(200).send({name: decoded.name});
+            }
+        })
+    }
+    else{
+        return res.status(403).send({msg: 'No token provided'});
     }
 };
