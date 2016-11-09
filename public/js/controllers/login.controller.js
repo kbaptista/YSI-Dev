@@ -1,4 +1,4 @@
-angular.module('LoginCtrl',[]).controller('LoginController', function($scope,AuthenticationService, $location, $route) {
+angular.module('LoginCtrl',[]).controller('LoginController', function($scope,AuthenticationService, $location, $window) {
     $scope.user = {
         name: '',
         password: ''
@@ -7,7 +7,7 @@ angular.module('LoginCtrl',[]).controller('LoginController', function($scope,Aut
     $scope.login = function(){
         AuthenticationService.login($scope.user).then(function(msg){
         $location.path('/home');
-        $route.reload();
+        $window.location.reload();
         }, function(error){
             console.log(error);
         });
