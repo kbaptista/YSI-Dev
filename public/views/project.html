@@ -1,8 +1,4 @@
-<div>
-    <h1>Projects</h1>
-    <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCreateProject">Create a project</button>
-
-    <div id="modalCreateProject" class="modal fade" role="dialog">
+<div id="modalCreateProject" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -46,7 +42,15 @@
         </div>
     </div>
 
+    <div class="panel-heading">
+        <div class="panel-title"><h2>Projects</h2></div>
+        <div class="panel-options">
+            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCreateProject">Create a project</button>
+        </div>
+    </div>
+    <div class="panel-body">
 
+        <div class="table-responsive">
     <table class="table">
         <thead>
         <tr>
@@ -69,4 +73,5 @@
         </tr>
         </tbody>
     </table>
-</div>
+        </div>
+    </div>

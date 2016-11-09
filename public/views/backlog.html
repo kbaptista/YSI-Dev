@@ -1,8 +1,4 @@
-<div>
-    <h1>Product Backlog</h1>
-    <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCreateUserStory">Add User Story</button>
-
-    <div id="modalCreateUserStory" class="modal fade" role="dialog">
+<div id="modalCreateUserStory" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -41,24 +37,39 @@
 
         </div>
     </div>
+
+    <div class="panel-heading">
+        <div class="panel-title"><h2>Product Backlog</h2></div>
+        <div class="panel-options">
+            <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCreateUserStory">Add User Story</button>
+
+        </div>
+    </div>
+    <div class="panel-body">
+
+<div class="table-responsive">
+
     <table class="table">
         <thead>
         <tr>
+            <th>Edit</th>
             <th>Name</th>
             <th>Description</th>
             <th>Effort</th>
             <th>Priority</th>
-            <th>Task</th>
-        </tr>
+            <th>Remove</th>
+         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="us in userStories">
+            <td><a href="" class="glyphicon glyphicon-edit"></a></td>
             <td>{{us.name}}</td>
             <td>{{us.description}}</td>
             <td>{{us.effort}}</td>
             <td>{{us.priority}}</td>
-            <td>Add Task</td>
-        </tr>
+            <td><a href="" class="glyphicon glyphicon-trash"></a></td>
+          </tr>
         </tbody>
     </table>
 </div>
+        </div>
