@@ -9,6 +9,7 @@ projectSchema.add({
     nbSprint : Number,
     dureeSprint : Number,
     name : String,
+    isPrivate : Boolean,
     description : String
 });
 

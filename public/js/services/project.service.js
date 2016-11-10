@@ -7,12 +7,20 @@ angular.module('ProjectServ', []).factory('ProjectService', function($http, API_
                     });
             },
 
-            createProject: function(name,desc,nbSprint,start,duree){
+            getPublicProjects: function(){
+                return $http({
+                    method: 'GET',
+                    url: API_ENDPOINT.url + '/public/projects'
+                })
+            },
+
+            createProject: function(name,desc,nbSprint,start,duree, isPrivate){
                 var dataJson = JSON.stringify({
                    start: start,
                     nbSprint: nbSprint,
                     dureeSprint: duree,
                     name: name,
+                    isPrivate : isPrivate,
                     description: desc
                 });
                 return $http({

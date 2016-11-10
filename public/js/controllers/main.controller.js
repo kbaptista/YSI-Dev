@@ -1,4 +1,5 @@
-angular.module('MainCtrl',[]).controller('MainController',function($scope, AuthenticationService){
+angular.module('MainCtrl',[]).controller('MainController',function($scope, AuthenticationService, $location){
+
     if(AuthenticationService.isAuthenticated()) {
         AuthenticationService.username().success(function (data) {
             $scope.name = data.name;
@@ -14,6 +15,7 @@ angular.module('MainCtrl',[]).controller('MainController',function($scope, Authe
 
     $scope.logout = function(){
         AuthenticationService.logout();
+        $location.path('/home');
     }
 
 
