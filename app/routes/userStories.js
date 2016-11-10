@@ -37,3 +37,18 @@ exports.createUserStories = function(req,res){
         }
     })
 };
+
+exports.remove = function (req,res) {
+    var id = req.params.id;
+    console.log(id);
+    US.findByIdAndRemove(id, function(err) {
+        if (err) throw err;
+        // we have deleted the user
+        console.log('US deleted!');
+    });
+};
+
+exports.edit = function (req, res) {
+    var id = req.params.id;
+    console.log (id);
+}

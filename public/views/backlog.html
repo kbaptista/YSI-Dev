@@ -62,14 +62,14 @@
         </thead>
         <tbody>
         <tr ng-repeat="us in userStories">
-            <td><a href="" class="glyphicon glyphicon-edit"></a></td>
+            <td><button class="glyphicon glyphicon-edit" ng-click="edit(us._id)" ng-controller="UsController"></button></td>
             <td>{{us.name}}</td>
             <td>{{us.description}}</td>
             <td>{{us.effort}}</td>
             <td>{{us.priority}}</td>
-            <td><a href="" class="glyphicon glyphicon-trash"></a></td>
+            <td><button class="glyphicon glyphicon-trash" ng-click="remove(us._id)" ng-controller="UsController"></button></td>
           </tr>
         </tbody>
     </table>
 </div>
-        </div>
+    </div>

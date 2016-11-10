@@ -9,7 +9,6 @@ var id_project = $routeParams.id;
             console.log('data error = ' + data);
         });
 
-
     $scope.createUserStories = function createUserStories(name,desc,effort,priority){
         if(name !== undefined && desc !== undefined && effort !== undefined && priority !== undefined){
             UsService.createUserStories(name,desc,effort,priority,id_project).success(function(data){
@@ -21,5 +20,19 @@ var id_project = $routeParams.id;
                     console.log('data error = ' + data);
                 });
         }
+    }
+
+    $scope.remove = function (id) {
+        console.log(id);
+        UsService.remove(id).success(function () {
+            $window.location.reload();
+        });
+    };
+
+    $scope.edit = function (id) {
+        console.log(id);
+        UsService.edit(id).success(function (data) {
+            $scope.us = data;
+        })
     }
 });

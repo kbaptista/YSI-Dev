@@ -24,6 +24,21 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
                 headers: {'Content-Type' : 'application/json'},
                 data: dataJson
             });
+        },
+
+        remove: function (id) {
+            return $http({
+                method: 'DELETE',
+                url: API_ENDPOINT.url + '/userStories/'+id,
+                data: ""
+            });
+        },
+
+        edit: function(id){
+            return $http({
+                method: 'GET',
+                url: API_ENDPOINT.url + '/userStories/'+id
+            });
         }
     }
 });
