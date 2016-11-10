@@ -1,5 +1,21 @@
 var Project = require('../models/project').model;
 
+exports.allPublicProjects = function(req,res){
+  Project.find({isPrivate: false}, function(err,result){
+      if(!err){
+          var projectsPublic = [];
+          for(var i = 0;i < result.length; ++i){
+              projectsPublic.push(result[i]);
+          }
+          res.status(200).send(projectsPublic);
+      }
+      else{
+          console.error(err);
+          res.status(500).send(err);
+      }
+  });
+};
+
 exports.allProjects = function(req,res){
     Project.find({}, function(err,docs){
         if(!err){
@@ -49,6 +65,7 @@ exports.createProject = function(req,res){
         nbSprint: req.body.nbSprint,
         dureeSprint: req.body.duree,
         name: req.body.name,
+        isPrivate : req.body.isPrivate,
         description: req.body.description
     });
 

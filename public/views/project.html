@@ -13,7 +13,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <form method="post" ng-submit="createProject(project.name,project.description,project.nbSprint,project.startDate,project.durationSprint)">
+                    <form method="post" ng-submit="createProject(project.name,project.description,project.nbSprint,project.startDate,project.durationSprint, project.isPrivate)">
                         <div class="form-group">
                             <label for="nameProject">Project name</label>
                             <input type="text" class="form-control" id="nameProject" placeholder="Name" ng-model="project.name">
@@ -24,15 +24,23 @@
                         </div>
                         <div class="form-group">
                             <label for="projectNbSprint">Number of sprints</label>
-                            <input type="number" class="form-control" id="projectnbsprint" ng-model="project.nbSprint">
+                            <input type="number" class="form-control" id="projectNbSprint" ng-model="project.nbSprint">
                         </div>
                         <div class="form-group">
-                            <label for="projectDureeSprint">Sprint duration</label>
+                            <label for="projectDureeSprint">Sprint duration (in weeks)</label>
                             <input type="number" class="form-control" id="projectDureeSprint" ng-model="project.durationSprint">
                         </div>
                         <div class="form-group">
                             <label for="projectStartDate">Start date</label>
                             <input type="date" class="form-control" id="projectStartDate" ng-model="project.startDate">
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="project.isPrivate" ng-init="project.isPrivate=false"> Private
+                                </label>
+                            </div>
+
                         </div>
                         <button type="submit" class="btn btn-default">Create</button>
                     </form>

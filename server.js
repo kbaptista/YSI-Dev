@@ -62,7 +62,8 @@ app.post('/logout',login.logout);
 app.get('/users',user.allUsers);
 app.get('/user/:id',user.findById);
 
-app.get('/projects',project.allProjects);
+app.get('/public/projects', project.allPublicProjects);
+app.get('/projects',passport.authenticate('jwt', { session : false}),project.allProjects);
 app.get('/projects/:id', project.findById);
 app.post('/projects', project.createProject);
 
