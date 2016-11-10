@@ -2,7 +2,9 @@
 
 #YSI_Dev
 
-API pour le cours CDP Master 2 informatique Bordeaux.
+API + Front-end pour le cours CDP Master 2 informatique Bordeaux.
+Le dossier *app* contient l'API (back-end) du projet et le dossier *public* contient la partie Front-end.
+Ce projet est développé à l'aide de [AngularJS](https://angularjs.org/) et [Node.js](https://nodejs.org/en/).
 
 ## Exécuter YSI localement
 ### Préalables
