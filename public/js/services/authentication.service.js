@@ -76,9 +76,19 @@ angular.module('AuthService', []).factory('AuthenticationService', function($htt
 
 })
 
-.factory('AuthInterceptor', function($rootScope,$q){
+.factory('AuthInterceptor', function($rootScope,$q, $rootScope){
+
     return {
+
         responseError: function(response){
+            if(response.status == 409) {
+                $rootScope.emailAlreadyExists = 'Username with this email already exists';
+               return $q.reject(response);
+            }
+            else if(response.status == 401){
+                $rootScope.authenticationFailed = 'Wrong username or password';
+                return $q.reject(response);
+            }
             $rootScope.$broadcast({
                 401: 'auth-not-authenticated'
             }[response.status], response);

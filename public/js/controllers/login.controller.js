@@ -1,8 +1,10 @@
-angular.module('LoginCtrl',[]).controller('LoginController', function($scope,AuthenticationService, $location, $window) {
+angular.module('LoginCtrl',[]).controller('LoginController', function($scope,AuthenticationService, $location, $window, $rootScope) {
     $scope.user = {
-        name: '',
+        email:'',
         password: ''
     };
+
+    $rootScope.authenticationFailed = '';
 
     $scope.login = function(){
         AuthenticationService.login($scope.user).then(function(msg){
