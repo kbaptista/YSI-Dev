@@ -1,4 +1,8 @@
-angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService){
+angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService, ProjectService){
+
+    $scope.setProjectName = function(projectName){
+        ProjectService.setName(projectName);
+    };
 
     if(!AuthenticationService.isAuthenticated()){
         ProjectService.getPublicProjects().success(function(publicProjects){

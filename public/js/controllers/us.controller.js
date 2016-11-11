@@ -1,6 +1,8 @@
-angular.module('UsCtrl',[]).controller('UsController', function($scope,$location, UsService,$route,$routeParams, $rootScope){
+angular.module('UsCtrl',[]).controller('UsController', function($scope,$location, UsService,$route,$routeParams, $rootScope, ProjectService){
     var id_project = $routeParams.id;
     $rootScope.displayProjectMenu = true;
+
+    $scope.projectName = ProjectService.getName();
 
     UsService.getUs(id_project).success(function(data){
         $scope.userStories = data;
