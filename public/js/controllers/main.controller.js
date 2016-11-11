@@ -1,5 +1,4 @@
-angular.module('MainCtrl',[]).controller('MainController',function($scope, AuthenticationService, $location, $rootScope){
-
+angular.module('MainCtrl',[]).controller('MainController',function($scope, AuthenticationService, $location, $rootScope, ProjectService, $routeParams){
     $rootScope.displayProjectMenu = false;
 
     if(AuthenticationService.isAuthenticated()) {

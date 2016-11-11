@@ -1,7 +1,14 @@
-angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService, ProjectService){
+angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService){
 
     $scope.setProjectName = function(projectName){
         ProjectService.setName(projectName);
+    };
+
+    $scope.setProjectId = function(projectId){
+        $scope.$watch('idProject', function(newValue, oldValue){
+            ProjectService.setId(projectId);
+            console.log(ProjectService.getId());
+        });
     };
 
     if(!AuthenticationService.isAuthenticated()){
