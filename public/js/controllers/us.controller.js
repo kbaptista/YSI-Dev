@@ -1,5 +1,6 @@
-angular.module('UsCtrl',[]).controller('UsController', function($scope,$location, UsService,$route,$routeParams){
-var id_project = $routeParams.id;
+angular.module('UsCtrl',[]).controller('UsController', function($scope,$location, UsService,$route,$routeParams, $rootScope){
+    var id_project = $routeParams.id;
+    $rootScope.displayProjectMenu = true;
 
     UsService.getUs(id_project).success(function(data){
         $scope.userStories = data;
@@ -20,7 +21,7 @@ var id_project = $routeParams.id;
                     console.log('data error = ' + data);
                 });
         }
-    }
+    };
 
     $scope.remove = function (id) {
         console.log(id);

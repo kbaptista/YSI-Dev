@@ -1,5 +1,6 @@
 angular.module('ProjectServ', []).factory('ProjectService', function($http, API_ENDPOINT){
         return{
+
             getProjects: function(){
                 return $http({
                         method: 'GET',

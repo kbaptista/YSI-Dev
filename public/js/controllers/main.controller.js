@@ -1,4 +1,6 @@
-angular.module('MainCtrl',[]).controller('MainController',function($scope, AuthenticationService, $location){
+angular.module('MainCtrl',[]).controller('MainController',function($scope, AuthenticationService, $location, $rootScope){
+
+    $rootScope.displayProjectMenu = false;
 
     if(AuthenticationService.isAuthenticated()) {
         AuthenticationService.username().success(function (data) {
