@@ -29,8 +29,7 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
         remove: function (id) {
             return $http({
                 method: 'DELETE',
-                url: API_ENDPOINT.url + '/userStories/'+id,
-                data: ""
+                url: API_ENDPOINT.url + '/userStories/'+id
             });
         },
 

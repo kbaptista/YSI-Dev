@@ -40,15 +40,15 @@ exports.createUserStories = function(req,res){
 
 exports.remove = function (req,res) {
     var id = req.params.id;
-    console.log(id);
-    US.findByIdAndRemove(id, function(err) {
-        if (err) throw err;
-        // we have deleted the user
-        console.log('US deleted!');
+    US.remove({_id:id},function (err) {
+        res.json({result: err? 'error' : 'Us deleted!'});
     });
 };
 
 exports.edit = function (req, res) {
     var id = req.params.id;
     console.log (id);
-}
+    US.findOne({_id:id},function (err, data) {
+        res.json(data);
+    });
+};

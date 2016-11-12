@@ -28,7 +28,7 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
     $scope.remove = function (id) {
         console.log(id);
         UsService.remove(id).success(function () {
-            $window.location.reload();
+            $route.reload();
         });
     };
 
@@ -37,5 +37,9 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
         UsService.edit(id).success(function (data) {
             $scope.us = data;
         })
+            .error(function(status,data){
+            console.log('status error = ' + status);
+            console.log('data error = ' + data);
+        });
     }
 });

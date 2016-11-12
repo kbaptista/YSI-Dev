@@ -39,14 +39,13 @@
     </div>
 
     <div class="panel-heading">
-        <div class="panel-title"><h2>Product Backlog</h2> <h3>{{projectName}}</h3></div>
+        <div class="panel-title"><h2>{{projectName}} : Product Backlog</h2></div>
         <div class="panel-options">
             <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCreateUserStory">Add User Story</button>
-
         </div>
     </div>
     <div class="panel-body">
-
+      <input type="text" placeholder="Search" class="" ng-model="query">
 <div class="table-responsive">
 
     <table class="table">
@@ -61,7 +60,7 @@
          </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="us in userStories">
+        <tr ng-repeat="us in userStories | filter : query">
             <td><button class="glyphicon glyphicon-edit" ng-click="edit(us._id)" ng-controller="UsController"></button></td>
             <td>{{us.name}}</td>
             <td>{{us.description}}</td>
