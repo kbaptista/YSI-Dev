@@ -2,6 +2,13 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
     var id_project = $routeParams.id;
     $rootScope.displayProjectMenu = true;
 
+    var UserStory = {
+        name:'',
+        description:'',
+        effort:'',
+        priority:''
+    };
+
     $scope.projectName = ProjectService.getName();
 
     UsService.getUs(id_project).success(function(data){
@@ -33,9 +40,13 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
     };
 
     $scope.editUserStory = function (id) {
-        console.log(id);
-        UsService.editUserStory(id).success(function (response) {
-            $scope.UserStory = response;
+        UsService.editUserStory(id).success(function (data) {
+            $scope.UserStory = data;
+            console.log($scope.UserStory);
+        })
+            .error(function(status,data){
+            console.log('status error = ' + status);
+            console.log('data error = ' + data);
         });
     };
 

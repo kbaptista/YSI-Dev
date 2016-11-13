@@ -52,11 +52,11 @@
                 <form method="post" ng-submit="updateUserStory(UserStory.name,UserStory.description,UserStory.effort,UserStory.priority)">
                     <div class="form-group">
                         <label for="UsName">Name</label>
-                        <input type="text" class="form-control" id="UpdateUsName" ng-model="UserStory.name" placeholder="">
+                        <input type="text" class="form-control" id="UpdateUsName" ng-model="UserStory.name" placeholder="{{UserStory.name}}">
                     </div>
                     <div class="form-group">
                         <label for="UsDescription">Description</label>
-                        <textarea class="form-control" id="UpdateUsDescription" placeholder="Description" ng-model="UserStory.description" rows="3"></textarea>
+                        <textarea class="form-control" id="UpdateUsDescription" placeholder="Description" ng-model="UserStory.description" rows="3">{{UserStory.description}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="UsEffort">Effort</label>

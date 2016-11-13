@@ -62,5 +62,5 @@ exports.editUserStory = function (req, res) {
 };
 
 exports.updateUserStory = function (req, res) {
-  console.log(req.body.name);
+
 };
