@@ -27,7 +27,7 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
 
     $scope.removeUserStory = function (id) {
         console.log(id);
-        UsService.removeUserStories(id).success(function () {
+        UsService.removeUserStory(id).success(function () {
             $route.reload();
         });
     };
