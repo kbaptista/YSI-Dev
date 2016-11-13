@@ -43,7 +43,7 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             controller: 'UsController'
         })
 
-        .when('/userStories/:id',{
+        .when('/userStories/remove/:id',{
             templateUrl: '/YSI-Dev/public/views/backlog.html',
             controller: 'UsController'
         })
@@ -53,6 +53,10 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             controller: 'UsController'
         })
 
+        .when('/userStories/update/:id',{
+            templateUrl: '/YSI-Dev/public/views/backlog.html',
+            controller: 'UsController'
+        })
 
         .otherwise({redirectTo : '/home'});
 

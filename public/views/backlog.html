@@ -49,7 +49,7 @@
             </div>
             <div class="modal-body">
 
-                <form method="post" ng-submit="updateUserStory()">
+                <form method="post" ng-submit="updateUserStory(UserStory.name,UserStory.description,UserStory.effort,UserStory.priority)">
                     <div class="form-group">
                         <label for="UsName">Name</label>
                         <input type="text" class="form-control" id="UpdateUsName" ng-model="UserStory.name" placeholder="">
