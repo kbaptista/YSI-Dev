@@ -25,21 +25,22 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
         }
     };
 
-    $scope.remove = function (id) {
+    $scope.removeUserStory = function (id) {
         console.log(id);
-        UsService.remove(id).success(function () {
+        UsService.removeUserStories(id).success(function () {
             $route.reload();
         });
     };
 
-    $scope.edit = function (id) {
+    $scope.editUserStory = function (id) {
         console.log(id);
-        UsService.edit(id).success(function (data) {
-            $scope.us = data;
-        })
-            .error(function(status,data){
-            console.log('status error = ' + status);
-            console.log('data error = ' + data);
+        UsService.editUserStory(id).success(function (data) {
+            $scope.UserStory = data;
         });
     }
+
+    $scope.updateUserStory = function (){
+        console.log($scope.UserStory);
+    }
+
 });

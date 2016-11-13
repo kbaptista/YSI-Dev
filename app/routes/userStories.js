@@ -38,17 +38,25 @@ exports.createUserStories = function(req,res){
     })
 };
 
-exports.remove = function (req,res) {
+exports.removeUserStory = function (req,res) {
     var id = req.params.id;
+    console.log(id);
     US.remove({_id:id},function (err) {
-        res.json({result: err? 'error' : 'Us deleted!'});
+        res.json({result: err? 'error': 'Us deleted!'+id });
     });
 };
 
-exports.edit = function (req, res) {
+exports.editUserStory = function (req, res) {
     var id = req.params.id;
-    console.log (id);
-    US.findOne({_id:id},function (err, data) {
-        res.json(data);
+    console.log(id);
+    US.findById({_id:id},function (err,data) {
+        if(!err){
+            var UserStory = data;
+            res.status(200).send(UserStory);
+        }
+        else{
+            console.error(err);
+            res.status(500).send(err);
+        }
     });
 };

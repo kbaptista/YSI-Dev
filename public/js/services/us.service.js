@@ -26,17 +26,17 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
             });
         },
 
-        remove: function (id) {
+        removeUserStory: function (id) {
             return $http({
                 method: 'DELETE',
                 url: API_ENDPOINT.url + '/userStories/'+id
             });
         },
 
-        edit: function(id){
+        editUserStory: function(id){
             return $http({
                 method: 'GET',
-                url: API_ENDPOINT.url + '/userStories/'+id
+                url: API_ENDPOINT.url + '/userStories/edit/'+id
             });
         }
     }
