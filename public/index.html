@@ -28,6 +28,7 @@
     <script src="/YSI-Dev/public/js/controllers/project.controller.js"></script>
     <script src="/YSI-Dev/public/js/controllers/us.controller.js"></script>
     <script src="/YSI-Dev/public/js/controllers/localMenu.controller.js"></script>
+    <script src="/YSI-Dev/public/js/controllers/member.controller.js"></script>
     <script src="/YSI-Dev/public/js/services/authentication.service.js"></script>
     <script src="/YSI-Dev/public/js/services/project.service.js"></script>
     <script src="/YSI-Dev/public/js/services/us.service.js"></script>
@@ -56,7 +57,7 @@
                 <ul class="nav">
                     <!-- Main menu -->
                     <li ng-if="isAuthenticated()"><a href="#/"><i class="glyphicon glyphicon-user"></i> {{name}}</a></li>
-                    <li class="current"><a href="index.html"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li class="current"><a href="#/home"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
                     <li><a href="#/project"><i class="glyphicon glyphicon-calendar"></i> Projects</a></li>
                     <li><a href="#/contact"><i class="glyphicon glyphicon-envelope"></i> Contact </a></li>
                     <li><a href="#/about"><i class="glyphicon glyphicon-question-sign"></i> About </a></li>
@@ -65,7 +66,8 @@
                     <li ng-if="isAuthenticated()" ng-click="logout()"><a href=""><i class="glyphicon n glyphicon-log-out"></i> logout </a></li>
                 </ul>
             </div>
-            <div ng-if="isAuthenticated() && displayProjectMenu == true" ng-include src="'views/localMenu.html'" ng-controller="LocalMenuController">
+            <div ng-if="isAuthenticated() && displayProjectMenu == true" ng-controller="LocalMenuController">
+                <div local-menu></div>
             </div>
         </div>
 

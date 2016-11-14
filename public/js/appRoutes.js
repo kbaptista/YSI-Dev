@@ -25,8 +25,7 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
         })
 
         .when('/charts',{
-            templateUrl: '/YSI-Dev/public/views/charts.html',
-            controller: 'ChartsController'
+            templateUrl: '/YSI-Dev/public/views/charts.html'
         })
 
         .when('/team',{
@@ -41,6 +40,11 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
         .when('/project/:id',{
             templateUrl: '/YSI-Dev/public/views/backlog.html',
             controller: 'UsController'
+        })
+
+        .when('/project/:id/members',{
+            templateUrl: '/YSI-Dev/public/views/members.html',
+            controller: 'MemberController'
         })
 
         .when('/userStories/:id',{

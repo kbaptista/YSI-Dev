@@ -1,0 +1,58 @@
+<div class="panel-heading">
+    <div class="panel-title"><h2>Manage members' project</h2>
+        <h3>{{projectName}}</h3>
+    </div>
+</div>
+
+<div class="panel-body">
+    <div class="col-md-5">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Product Owner</th>
+                    <th>Scrum Master</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="member in members">
+                    <td>{{member.name}}</td>
+                    <td>{{member.email}}</td>
+                    <td></td>
+                    <td></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <form class="form-inline pull-right">
+            <div class="form-group">
+                <label class="sr-only" for="username">Username</label>
+                <input type="text" class="form-control" id="username" placeholder="Username">
+            </div>
+            <button type="submit" class="btn btn-primary">Add user</button>
+        </form>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="user in users">
+
+                    <td>{{us.name}}</td>
+                    <td>{{us.description}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

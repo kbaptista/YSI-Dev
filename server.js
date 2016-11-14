@@ -64,8 +64,8 @@ app.get('/user/:id',user.findById);
 
 app.get('/public/projects', project.allPublicProjects);
 app.get('/projects',passport.authenticate('jwt', { session : false}),project.allProjects);
-app.get('/projects/:id', project.findById);
-app.post('/projects', project.createProject);
+app.get('/projects/:id', passport.authenticate('jwt', { session : false}),project.findById);
+app.post('/projects', passport.authenticate('jwt', { session : false}),project.createProject);
 
 app.get('/userStories/:id',usersStories.UsFromProject);
 app.post('/userStories',usersStories.createUserStories);

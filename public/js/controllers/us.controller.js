@@ -1,16 +1,21 @@
-angular.module('UsCtrl',[]).controller('UsController', function($scope,$location, UsService,$route,$routeParams, $rootScope, ProjectService){
+angular.module('UsCtrl',[]).controller('UsController', function($scope,$location, UsService,$route,$routeParams, $rootScope, ProjectService, AuthenticationService){
     var id_project = $routeParams.id;
+    console.log('-> us controller');
+    console.log('id : ' + id_project);
+    $rootScope.projectId = id_project;
     $rootScope.displayProjectMenu = true;
 
     $scope.projectName = ProjectService.getName();
 
-    UsService.getUs(id_project).success(function(data){
-        $scope.userStories = data;
-    })
-        .error(function(status,data){
-            console.log('status error = ' + status);
-            console.log('data error = ' + data);
-        });
+    if(AuthenticationService.isAuthenticated()) {
+        UsService.getUs(id_project).success(function (data) {
+                $scope.userStories = data;
+            })
+            .error(function (status, data) {
+                console.log('status error = ' + status);
+                console.log('data error = ' + data);
+            });
+    }
 
     $scope.createUserStories = function createUserStories(name,desc,effort,priority){
         if(name !== undefined && desc !== undefined && effort !== undefined && priority !== undefined){
@@ -37,7 +42,7 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
         UsService.editUserStory(id).success(function (data) {
             $scope.UserStory = data;
         });
-    }
+    };
 
     $scope.updateUserStory = function (){
         console.log($scope.UserStory);

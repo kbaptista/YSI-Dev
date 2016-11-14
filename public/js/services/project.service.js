@@ -1,6 +1,6 @@
 angular.module('ProjectServ', []).factory('ProjectService', function($http, API_ENDPOINT){
         var project = {
-            id: '',
+            id:'',
             name : '',
             description: ''
         };
@@ -11,16 +11,16 @@ angular.module('ProjectServ', []).factory('ProjectService', function($http, API_
               return project.name;
             },
 
-            setName: function(newName){
-                project.name = newName;
+            setId: function(newId){
+                project.id = newId;
             },
 
             getId: function(){
                 return project.id;
             },
 
-            setId: function(newId){
-                project.id = newId;
+            setName: function(newName){
+                project.name = newName;
             },
 
             getProjects: function(){

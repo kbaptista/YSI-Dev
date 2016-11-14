@@ -1,15 +1,12 @@
-angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService){
+angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService, $rootScope){
 
-    $scope.setProjectName = function(projectName){
+    console.log('-> project controller');
+
+    $scope.setProjectDatas = function(projectName, projectId){
         ProjectService.setName(projectName);
+        $rootScope.projectId = projectId;
     };
 
-    $scope.setProjectId = function(projectId){
-        $scope.$watch('idProject', function(newValue, oldValue){
-            ProjectService.setId(projectId);
-            console.log(ProjectService.getId());
-        });
-    };
 
     if(!AuthenticationService.isAuthenticated()){
         ProjectService.getPublicProjects().success(function(publicProjects){

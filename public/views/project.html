@@ -72,7 +72,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="project in projects">
-            <td><a href="#/project/{{project._id}}" ng-click="setProjectName(project.name); setProjectId(project._id)">{{project.name}}</a></td>
+            <td><a href="#/project/{{project._id}}" ng-click="setProjectDatas(project.name, project._id)">{{project.name}}</a></td>
             <td>{{project.description}}</td>
             <td>{{project.po}}</td>
             <td></td>
