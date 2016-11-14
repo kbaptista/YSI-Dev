@@ -216,13 +216,47 @@ footer .copy{
 
 /* Sidebar navigation */
 
+.content-box-red{
+    margin-bottom:30px;
+    background:#fff;
+    border-radius:10px;
+    padding:10px;
+    border-left:2px solid #c9302c;
+    border-top:2px solid #c9302c;
+    border-right:2px solid #c9302c;
+    border-bottom:2px solid #c9302c;
+}
+
+.content-box-green{
+    margin-bottom:30px;
+    background:#fff;
+    border-radius:10px;
+    padding:10px;
+    border-left:2px solid #5cb85c;
+    border-top:2px solid #5cb85c;
+    border-right:2px solid #5cb85c;
+    border-bottom:2px solid #5cb85c;
+}
+
+.content-box-orange{
+    margin-bottom:30px;
+    background:#fff;
+    border-radius:10px;
+    padding:10px;
+    border-left:2px solid #eb9316;
+    border-top:2px solid #eb9316;
+    border-right:2px solid #eb9316;
+    border-bottom:2px solid #eb9316;
+}
+
+
 .content-box, .content-box-large {
     margin-bottom:30px;
     background:#fff;
     border-radius:10px;
     padding:10px;
-    border-left:1px solid #eee;
-    border-top:1px solid #eee;
+    border-left:2px solid #eeeeee;
+    border-top:2px solid #eee;
     border-right:2px solid #eee;
     border-bottom:2px solid #eee;
 }

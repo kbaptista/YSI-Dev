@@ -57,6 +57,10 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             controller: 'UsController'
         })
 
+        .when('/userStories/update/',{
+            templateUrl: '/YSI-Dev/public/views/backlog.html',
+            controller: 'UsController'
+        })
 
         .otherwise({redirectTo : '/home'});
 

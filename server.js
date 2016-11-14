@@ -70,7 +70,8 @@ app.post('/projects', passport.authenticate('jwt', { session : false}),project.c
 app.get('/userStories/:id',usersStories.UsFromProject);
 app.post('/userStories',usersStories.createUserStories);
 
-app.delete('/userStories/:id',usersStories.removeUserStory);
+app.delete('/userStories/remove/:id',usersStories.removeUserStory);
 app.get('/userStories/edit/:id',usersStories.editUserStory);
+app.put('/userStories/update/',usersStories.updateUserStory);
 
 app.listen(port);

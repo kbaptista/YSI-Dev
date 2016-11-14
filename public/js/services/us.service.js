@@ -29,7 +29,7 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
         removeUserStory: function (id) {
             return $http({
                 method: 'DELETE',
-                url: API_ENDPOINT.url + '/userStories/'+id
+                url: API_ENDPOINT.url + '/userStories/remove/'+id
             });
         },
 
@@ -37,6 +37,13 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
             return $http({
                 method: 'GET',
                 url: API_ENDPOINT.url + '/userStories/edit/'+id
+            });
+        },
+
+        updateUserStory: function (name,desc,effort,priority) {
+            return $http({
+                method: 'PUT',
+                url: API_ENDPOINT.url + '/userStories/update/'
             });
         }
     }

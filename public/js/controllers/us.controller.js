@@ -5,6 +5,13 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
     $rootScope.projectId = id_project;
     $rootScope.displayProjectMenu = true;
 
+    var UserStory = {
+        name:'',
+        description:'',
+        effort:'',
+        priority:''
+    };
+
     $scope.projectName = ProjectService.getName();
 
     if(AuthenticationService.isAuthenticated()) {
@@ -38,14 +45,25 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
     };
 
     $scope.editUserStory = function (id) {
-        console.log(id);
         UsService.editUserStory(id).success(function (data) {
             $scope.UserStory = data;
+            console.log($scope.UserStory);
+        })
+            .error(function(status,data){
+            console.log('status error = ' + status);
+            console.log('data error = ' + data);
         });
     };
 
-    $scope.updateUserStory = function (){
-        console.log($scope.UserStory);
-    }
+    $scope.updateUserStory = function (name,desc,effort,priority){
+        if(name !== undefined && desc !== undefined && effort !== undefined && priority !== undefined)
+            UsService.updateUserStory(name,desc,effort,priority).success(function(data){
+                console.log(name);
+            })
+                .error(function(status,data){
+                    console.log('status error = ' + status);
+                    console.log('data error = ' + data);
+                });
+    };
 
 });
