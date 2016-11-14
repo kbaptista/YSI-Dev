@@ -9,7 +9,7 @@ angular.module('LocalMenuCtrl',[]).controller('LocalMenuController', function($s
         return {
             templateUrl: '/YSI-Dev/public/views/partials/localMenu.html',
             link: function(scope){
-                scope.projectId = $rootScope.projectId;
+                scope.projectId = '123';
             }
         };
     });
