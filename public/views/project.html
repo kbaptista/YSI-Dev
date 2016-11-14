@@ -57,29 +57,28 @@
         </div>
     </div>
     <div class="panel-body">
+        <input type="text" placeholder="Search" class="" ng-model="query">
+    </div>
+<div class="col-md-6" ng-repeat="project in projects | filter:query">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="content-box">
+                <div class="panel-content">
 
-        <div class="table-responsive">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Product Owner</th>
-            <th>Developpers</th>
-            <th>Starting date</th>
-            <th>Duration</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="project in projects">
-            <td><a href="#/project/{{project._id}}" ng-click="setProjectName(project.name); setProjectId(project._id)">{{project.name}}</a></td>
-            <td>{{project.description}}</td>
-            <td>{{project.po}}</td>
-            <td></td>
-            <td>{{project.startDate}}</td>
-            <td>{{project.nbSprint}}</td>
-        </tr>
-        </tbody>
-    </table>
+                    <label>Name : </label><a href="#/project/{{project._id}}" ng-click="setProjectName(project.name); setProjectId(project._id)">{{project.name}}</a> <br>
+                    <label>Description : </label>{{project.description}} <br>
+                    <label>Product Owner : </label>{{project.po}} <br>
+                    <label>Developpers : </label><br>
+                    <label>Starting date : </label>{{project.startDate}} <br>
+                    <label>Duration :</label><br>
+                </div>
+                <div class="panel-options">
+                    <button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="" ng-click="" ng-controller="ProjectController" title="Edit"></button>
+                    <button class="glyphicon glyphicon-user" ng-click="" ng-controller="ProjectController" title="Team"></button>
+                    <button class="glyphicon glyphicon-folder-open" ng-click="" ng-controller="ProjectController" title="Open"></button>
+                    <button class="glyphicon glyphicon-trash" ng-click="" ng-controller="ProjectController" title="Remove"></button>
+                </div>
+            </div>
         </div>
     </div>
+</div>
