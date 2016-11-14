@@ -5,7 +5,7 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
         getUs: function(id_project){
             return $http({
                 method: 'GET',
-                url: API_ENDPOINT.url + '/userStories/'+id_project
+                url: API_ENDPOINT.url + '/userStoriesFromProject/'+id_project
             });
         },
 
@@ -29,21 +29,23 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
         removeUserStory: function (id) {
             return $http({
                 method: 'DELETE',
-                url: API_ENDPOINT.url + '/userStories/remove/'+id
+                url: API_ENDPOINT.url + '/userStories/'+id
             });
         },
 
         getUserStory: function(id){
             return $http({
                 method: 'GET',
-                url: API_ENDPOINT.url + '/userStories/edit/'+id
+                url: API_ENDPOINT.url + '/userStories/'+id
             });
         },
 
-        updateUserStory: function (name,desc,effort,priority) {
+        updateUserStory: function (id,updateUS) {
             return $http({
                 method: 'PUT',
-                url: API_ENDPOINT.url + '/userStories/update/'
+                url: API_ENDPOINT.url + '/userStories/'+ id,
+                headers: {'Content-Type': 'application/json'},
+                data: updateUS
             });
         }
     }

@@ -67,11 +67,11 @@ app.get('/projects',passport.authenticate('jwt', { session : false}),project.all
 app.get('/projects/:id', passport.authenticate('jwt', { session : false}),project.findById);
 app.post('/projects', passport.authenticate('jwt', { session : false}),project.createProject);
 
-app.get('/userStories/:id',usersStories.UsFromProject);
+app.get('/userStoriesFromProject/:id',usersStories.UsFromProject);
 app.post('/userStories',usersStories.createUserStories);
 
-app.delete('/userStories/remove/:id',usersStories.removeUserStory);
-app.get('/userStories/edit/:id',usersStories.getUserStory);
-app.put('/userStories/update/',usersStories.updateUserStory);
+app.delete('/userStories/:id',usersStories.removeUserStory);
+app.get('/userStories/:id',usersStories.getUserStoryById);
+app.put('/userStories/:id',usersStories.updateUserStory);
 
 app.listen(port);
