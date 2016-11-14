@@ -71,7 +71,7 @@ app.get('/userStories/:id',usersStories.UsFromProject);
 app.post('/userStories',usersStories.createUserStories);
 
 app.delete('/userStories/remove/:id',usersStories.removeUserStory);
-app.get('/userStories/edit/:id',usersStories.editUserStory);
+app.get('/userStories/edit/:id',usersStories.getUserStory);
 app.put('/userStories/update/',usersStories.updateUserStory);
 
 app.listen(port);

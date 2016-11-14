@@ -8,7 +8,6 @@
                     <h4 class="modal-title">Add User Story</h4>
                 </div>
                 <div class="modal-body">
-
                     <form method="post" ng-submit="createUserStories(us.name,us.description,us.effort,us.priority)">
                         <div class="form-group">
                             <label for="UsName">Name</label>
@@ -48,22 +47,21 @@
                 <h4 class="modal-title">Update User Story</h4>
             </div>
             <div class="modal-body">
-
-                <form method="post" ng-submit="updateUserStory()" ng-controller="UsController">
+                <form method="post" ng-submit="updateUserStory()">
                     <div class="form-group">
-                        <label for="UsName">Name</label>
-                        <input type="text" class="form-control" id="UpdateUsName" ng-model="UserStory.name" placeholder="{{UserStory.name}}">
+                        <label for="UpdateUsName">Name</label>
+                        <input type="text" class="form-control" id="UpdateUsName" ng-model="UserStory.name" >
                     </div>
                     <div class="form-group">
-                        <label for="UsDescription">Description</label>
-                        <textarea class="form-control" id="UpdateUsDescription" placeholder="Description" ng-model="UserStory.description" rows="3">{{UserStory.description}}</textarea>
+                        <label for="UpdateUsDescription">Description</label>
+                        <textarea class="form-control" id="UpdateUsDescription" ng-model="UserStory.description" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="UsEffort">Effort</label>
+                        <label for="UpdateUsEffort">Effort</label>
                         <input type="number" class="form-control" id="UpdateUsEffort" ng-model="UserStory.effort">
                     </div>
                     <div class="form-group">
-                        <label for="UsPriority">Priority</label>
+                        <label for="UpdateUsPriority">Priority</label>
                         <input type="number" class="form-control" id="UpdateUsPriority" ng-model="UserStory.priority">
                     </div>
                     <button type="submit" class="btn btn-default">Update</button>
@@ -96,11 +94,11 @@
                     <label>Name : </label>{{us.name}} <br>
                     <label>Effort : </label>{{us.effort}} <br>
                     <label>Priority : </label>{{us.priority}} <br>
-                    <label>Desciption : </label>{{us.description}}
+                    <label>Description : </label>{{us.description}}
                 </div>
                 <div class="panel-options">
-                    <button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#modalUpdateUserStory" ng-click="editUserStory(us._id)" ng-controller="UsController"></button>
-                    <button class="glyphicon glyphicon-trash" ng-click="removeUserStory(us._id)" ng-controller="UsController"></button>
+                    <button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#modalUpdateUserStory" ng-click="getUserStory(us._id)"></button>
+                    <button class="glyphicon glyphicon-trash" ng-click="removeUserStory(us._id)"></button>
                 </div>
             </div>
         </div>

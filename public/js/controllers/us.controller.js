@@ -1,16 +1,13 @@
 angular.module('UsCtrl',[]).controller('UsController', function($scope,$location, UsService,$route,$routeParams, $rootScope, ProjectService, AuthenticationService){
     var id_project = $routeParams.id;
+
     console.log('-> us controller');
     console.log('id : ' + id_project);
+
     $rootScope.projectId = id_project;
     $rootScope.displayProjectMenu = true;
 
-    var UserStory = {
-        name:'',
-        description:'',
-        effort:'',
-        priority:''
-    };
+    $scope.UserStory = {};
 
     $scope.projectName = ProjectService.getName();
 
@@ -44,10 +41,9 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
         });
     };
 
-    $scope.editUserStory = function (id) {
-        UsService.editUserStory(id).success(function (data) {
+    $scope.getUserStory = function (id) {
+        UsService.getUserStory(id).success(function (data) {
             $scope.UserStory = data;
-            console.log($scope.UserStory);
         })
             .error(function(status,data){
             console.log('status error = ' + status);

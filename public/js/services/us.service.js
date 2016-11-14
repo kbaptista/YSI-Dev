@@ -33,7 +33,7 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
             });
         },
 
-        editUserStory: function(id){
+        getUserStory: function(id){
             return $http({
                 method: 'GET',
                 url: API_ENDPOINT.url + '/userStories/edit/'+id

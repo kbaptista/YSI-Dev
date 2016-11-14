@@ -46,7 +46,7 @@ exports.removeUserStory = function (req,res) {
     });
 };
 
-exports.editUserStory = function (req, res) {
+exports.getUserStory = function (req, res) {
     var id = req.params.id;
     console.log(id);
     US.findById({_id:id},function (err,data) {

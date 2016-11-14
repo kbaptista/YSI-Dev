@@ -4,8 +4,8 @@ var usSchema = new mongoose.Schema();
 usSchema.add({
     name : String,
     description : String,
-    effort : String,
-    priority : String,
+    effort : Number,
+    priority : Number,
     idTasks : [],
     idProject : String
 });
