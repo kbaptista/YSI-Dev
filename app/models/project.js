@@ -3,8 +3,8 @@ var User = require('./user').schema;
 
 var projectSchema = new mongoose.Schema();
 projectSchema.add({
-    idProductOwner : String,
-    idScrumMaster : String,
+    productOwner : User,
+    scrumMaster : User,
     developpers : [User],
     startDate : Date,
     nbSprint : Number,

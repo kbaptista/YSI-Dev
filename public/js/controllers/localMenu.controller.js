@@ -1,15 +1,14 @@
-angular.module('LocalMenuCtrl',[]).controller('LocalMenuController', function($scope, ProjectService, $rootScope) {
+angular.module('LocalMenuCtrl',[]).controller('LocalMenuController', function($scope, ProjectService) {
     console.log('-> LocalMenu controller');
-    /*$scope.projectId = '';
-    $scope.projectId = $rootScope.projectId;*/
 
-    //$scope.projectId = '1234';
+    //$scope.projectId = ProjectService.getId();
+    //console.log('LocalMenuController = ' + $scope.projectId);
 })
-    .directive('localMenu', function($rootScope){
+    .directive('localMenu', function(){
         return {
-            templateUrl: '/YSI-Dev/public/views/partials/localMenu.html',
-            link: function(scope, element, attributes){
-                scope.projectId = $rootScope.projectId;
-            }
+            scope: {
+              projectId: '@'
+            },
+            templateUrl: '/YSI-Dev/public/views/partials/localMenu.html'
         };
     });

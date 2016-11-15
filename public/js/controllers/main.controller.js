@@ -2,6 +2,11 @@ angular.module('MainCtrl',[]).controller('MainController',function($scope, Authe
     $rootScope.displayProjectMenu = false;
     console.log('-> MainController');
 
+    $scope.isActive = function(viewLocation){
+        return viewLocation == $location.path();
+    };
+
+
     if(AuthenticationService.isAuthenticated()) {
         AuthenticationService.username().success(function (data) {
             $scope.name = data.name;

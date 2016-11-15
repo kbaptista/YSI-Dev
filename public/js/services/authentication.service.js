@@ -17,6 +17,7 @@ angular.module('AuthService', []).factory('AuthenticationService', function($htt
     function useCredentials(token){
         isAuthenticated = true;
         authToken = token;
+
         $http.defaults.headers.common.Authorization = authToken; // Headers that are common for all requests (token)
     }
 

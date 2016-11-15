@@ -56,18 +56,18 @@
             <div class="sidebar content-box" style="display: block;">
                 <ul class="nav">
                     <!-- Main menu -->
-                    <li ng-if="isAuthenticated()"><a href="#/"><i class="glyphicon glyphicon-user"></i> {{name}}</a></li>
-                    <li class="current"><a href="#/home"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
-                    <li><a href="#/project"><i class="glyphicon glyphicon-calendar"></i> Projects</a></li>
-                    <li><a href="#/contact"><i class="glyphicon glyphicon-envelope"></i> Contact </a></li>
-                    <li><a href="#/about"><i class="glyphicon glyphicon-question-sign"></i> About </a></li>
-                    <li ng-if="!isAuthenticated()"><a href="#/login"><i class="glyphicon glyphicon-log-in"></i> Login </a></li>
-                    <li ng-if="!isAuthenticated()"><a href="#/signup"><i class="glyphicon glyphicon-plus"></i> Signup </a></li>
+                    <li ng-class="{ current : isActive('/')}" ng-if="isAuthenticated()"><a href="#/"><i class="glyphicon glyphicon-user"></i> {{name}}</a></li>
+                    <li ng-class="{ current : isActive('/home')}"><a href="#/home"><i class="glyphicon glyphicon-home"></i> Dashboard</a></li>
+                    <li ng-class="{ current : isActive('/project')}"><a href="#/project"><i class="glyphicon glyphicon-calendar"></i> Projects</a></li>
+                    <li ng-class="{ current : isActive('/contact')}"><a href="#/contact"><i class="glyphicon glyphicon-envelope"></i> Contact </a></li>
+                    <li ng-class="{ current : isActive('/about')}"><a href="#/about"><i class="glyphicon glyphicon-question-sign"></i> About </a></li>
+                    <li ng-class="{ current : isActive('/login')}" ng-if="!isAuthenticated()"><a href="#/login"><i class="glyphicon glyphicon-log-in"></i> Login </a></li>
+                    <li ng-class="{ current : isActive('/signup')}" ng-if="!isAuthenticated()"><a href="#/signup"><i class="glyphicon glyphicon-plus"></i> Signup </a></li>
                     <li ng-if="isAuthenticated()" ng-click="logout()"><a href=""><i class="glyphicon n glyphicon-log-out"></i> logout </a></li>
                 </ul>
             </div>
             <div ng-if="isAuthenticated() && displayProjectMenu == true" ng-controller="LocalMenuController">
-                <div local-menu></div>
+                <div local-menu project-id="{{projectId}}"></div>
             </div>
         </div>
 

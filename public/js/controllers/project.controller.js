@@ -4,6 +4,7 @@ angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,
 
     $scope.setProjectDatas = function(projectName, projectId){
         ProjectService.setName(projectName);
+        ProjectService.setId(projectId);
         $rootScope.projectId = projectId;
     };
 

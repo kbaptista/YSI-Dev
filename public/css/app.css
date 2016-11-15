@@ -7,6 +7,10 @@ body {
     padding: 0px;
 }
 
+.padding-left{
+    padding-left: 20px;
+}
+
 .page-content > .row {
     margin-left: 0px !important;
     margin-right: 0px !important;
@@ -657,7 +661,7 @@ body {
     .header .form{
         margin:10px auto;
     }
-    .sidebar, content-box{
+    .sidebar, .content-box{
         margin-bottom:30px;
         width:100%;
         float:none;
