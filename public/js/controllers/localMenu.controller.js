@@ -3,13 +3,13 @@ angular.module('LocalMenuCtrl',[]).controller('LocalMenuController', function($s
     /*$scope.projectId = '';
     $scope.projectId = $rootScope.projectId;*/
 
-   // $scope.projectId = ProjectService.getId();
+    //$scope.projectId = '1234';
 })
     .directive('localMenu', function($rootScope){
         return {
             templateUrl: '/YSI-Dev/public/views/partials/localMenu.html',
-            link: function(scope){
-                scope.projectId = '123';
+            link: function(scope, element, attributes){
+                scope.projectId = $rootScope.projectId;
             }
         };
     });
