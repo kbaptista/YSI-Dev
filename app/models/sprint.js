@@ -4,7 +4,7 @@ var sprintSchema = new mongoose.schema();
 sprintSchema.add({
     name : String,
     startDate : Date,
-    deadLine : Date,
+    deadLine : Date
 });
 
 var Sprint = mongoose.model('Sprint',sprintSchema);

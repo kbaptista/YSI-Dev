@@ -13,5 +13,6 @@ angular.module('ysi-app',
         'UsServ',
         'ConstantModule',
         'LocalMenuCtrl',
-        'MemberCtrl'
+        'MemberCtrl',
+        'UserServ'
     ]);
