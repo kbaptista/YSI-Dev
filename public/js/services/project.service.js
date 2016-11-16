@@ -50,7 +50,7 @@ angular.module('ProjectServ', []).factory('ProjectService', function($http, API_
                     po: user,
                     sm: user,
                     nbSprint: nbSprint,
-                    dureeSprint: duree,
+                    duree: duree,
                     name: name,
                     isPrivate : isPrivate,
                     description: desc

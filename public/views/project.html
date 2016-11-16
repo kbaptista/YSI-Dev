@@ -70,7 +70,7 @@
                     <label>Product Owner : </label>{{project.po}} <br>
                     <label>Developpers : </label><br>
                     <label>Starting date : </label>{{project.startDate | date : "MM/dd/yyyy"}} <br>
-                    <label>Duration :</label><br>
+                    <label>Duration :</label>{{project.nbSprint}} sprints of {{project.dureeSprint}} weeks<br>
                 </div>
                 <div class="panel-options">
                     <button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target=""  title="Edit"></button>
