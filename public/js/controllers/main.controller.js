@@ -8,7 +8,7 @@ angular.module('MainCtrl',[]).controller('MainController',function($scope, Authe
 
 
     if(AuthenticationService.isAuthenticated()) {
-        AuthenticationService.username().success(function (data) {
+        AuthenticationService.userConnected().success(function (data) {
             $scope.name = data.name;
             })
             .error(function (err) {

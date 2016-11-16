@@ -49,13 +49,12 @@ app.set('view engine','ejs');
 
 app.use(cors(corsOptions));
 
-app.get('/login',login.showLoginPage);
 app.get('/signup',signup.showSignupPage);
 
 app.post('/signup', signup.jwtSignup);
 app.post('/authenticate', authenticate.getAuthentication);
 app.get('/memberinfo', passport.authenticate('jwt', { session : false}), user.getInfo);
-app.get('/getName', passport.authenticate('jwt', { session : false}), user.getName);
+app.get('/userConnected', passport.authenticate('jwt', { session : false}), user.getUserConnected);
 
 app.post('/logout',login.logout);
 

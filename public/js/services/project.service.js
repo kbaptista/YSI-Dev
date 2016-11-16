@@ -44,9 +44,11 @@ angular.module('ProjectServ', []).factory('ProjectService', function($http, API_
               });
             },
 
-            createProject: function(name,desc,nbSprint,start,duree, isPrivate){
+            createProject: function(name,desc,nbSprint,start,duree, isPrivate, user){
                 var dataJson = JSON.stringify({
                     start: start,
+                    po: user,
+                    sm: user,
                     nbSprint: nbSprint,
                     dureeSprint: duree,
                     name: name,

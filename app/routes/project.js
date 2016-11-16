@@ -57,7 +57,8 @@ exports.findById = function(req,res){
 
 exports.createProject = function(req,res){
     var project = new Project({
-        idProductOwner: req.body.po,
+        productOwner: req.body.po,
+        scrumMaster: req.body.sm,
         startDate: req.body.start,
         nbSprint: req.body.nbSprint,
         dureeSprint: req.body.duree,
