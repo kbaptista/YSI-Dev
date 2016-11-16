@@ -5,7 +5,7 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
         getUs: function(id_project){
             return $http({
                 method: 'GET',
-                url: API_ENDPOINT.url + '/userStoriesFromProject/'+id_project
+                url: API_ENDPOINT.url + '/userStories/'+id_project + '/project'
             });
         },
 

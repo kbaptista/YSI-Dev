@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Task = require('./task').schema;
 
 var usSchema = new mongoose.Schema();
 usSchema.add({
@@ -6,7 +7,7 @@ usSchema.add({
     description : String,
     effort : Number,
     priority : Number,
-    idTasks : [],
+    tasks : [Task],
     idProject : String
 });
 

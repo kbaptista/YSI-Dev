@@ -34,14 +34,23 @@ angular.module('ProjectServ', []).factory('ProjectService', function($http, API_
                 return $http({
                     method: 'GET',
                     url: API_ENDPOINT.url + '/public/projects'
-                })
+                });
             },
 
-            createProject: function(name,desc,nbSprint,start,duree, isPrivate){
+            getProjectById: function(id){
+              return $http({
+                  method: 'GET',
+                  url: API_ENDPOINT.url + '/projects/' + id
+              });
+            },
+
+            createProject: function(name,desc,nbSprint,start,duree, isPrivate, user){
                 var dataJson = JSON.stringify({
-                   start: start,
+                    start: start,
+                    po: user,
+                    sm: user,
                     nbSprint: nbSprint,
-                    dureeSprint: duree,
+                    duree: duree,
                     name: name,
                     isPrivate : isPrivate,
                     description: desc
@@ -52,6 +61,15 @@ angular.module('ProjectServ', []).factory('ProjectService', function($http, API_
                     headers: {'Content-Type' : 'application/json'},
                     data: dataJson
                 });
+            },
+
+            addUserToProject: function(id,user){
+                return $http({
+                    method: 'POST',
+                    url: API_ENDPOINT.url + '/projects/' + id + '/users',
+                    headers: {'Content-Type' : 'application/json'},
+                    data: user
+                })
             }
         }
 });

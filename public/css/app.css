@@ -17,6 +17,15 @@ body {
     margin-top: 30px;
 }
 
+.sort-icon {
+    font-size: 9px;
+    margin-left: 5px;
+}
+
+.table-all-members th {
+    cursor:pointer;
+}
+
 /* Footer */
 
 footer{

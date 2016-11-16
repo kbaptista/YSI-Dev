@@ -59,8 +59,12 @@ angular.module('AuthService', []).factory('AuthenticationService', function($htt
         destroyUserCredentials();
     };
 
-    var username = function() {
-        return $http.get(API_ENDPOINT.url + '/getName');
+    var userConnected = function() {
+        return $http.get(API_ENDPOINT.url + '/userConnected');
+    };
+
+    var getCurrentUser = function(){
+        return currentUser;
     };
 
 
@@ -70,7 +74,8 @@ angular.module('AuthService', []).factory('AuthenticationService', function($htt
         login: login,
         register: register,
         logout: logout,
-        username: username,
+        getCurrentUser: getCurrentUser,
+        userConnected: userConnected,
         isAuthenticated: function() {return isAuthenticated;}
     };
 

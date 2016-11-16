@@ -4,6 +4,7 @@ var sprintSchema = new mongoose.Schema();
 sprintSchema.add({
     name : String,
     startDate : Date,
+    deadLine : Date
     deadLine : Date,
     idProject : String
 });

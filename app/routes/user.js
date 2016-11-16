@@ -65,12 +65,12 @@ exports.getInfo = function(req, res){
     }
 };
 
-exports.getName = function(req, res){
+exports.getUserConnected = function(req, res){
     var token = auth.getToken(req.headers);
     if(token){
         var decoded = jwt.decode(token, config.secret);
         User.findOne({
-            name: decoded.name
+            email: decoded.email
         }, function(err,user){
             if(err) throw err;
 
@@ -78,7 +78,7 @@ exports.getName = function(req, res){
                 return res.status(403).send({msg: 'Auth failed. User not fount'});
             }
             else{
-                res.status(200).send({name: decoded.name});
+                res.status(200).send({id: decoded._id, email: decoded.email, name: decoded.name, password: decoded.password, idProjects: decoded.idProjects});
             }
         })
     }

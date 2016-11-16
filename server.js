@@ -50,13 +50,12 @@ app.set('view engine','ejs');
 
 app.use(cors(corsOptions));
 
-app.get('/login',login.showLoginPage);
 app.get('/signup',signup.showSignupPage);
 
 app.post('/signup', signup.jwtSignup);
 app.post('/authenticate', authenticate.getAuthentication);
 app.get('/memberinfo', passport.authenticate('jwt', { session : false}), user.getInfo);
-app.get('/getName', passport.authenticate('jwt', { session : false}), user.getName);
+app.get('/userConnected', passport.authenticate('jwt', { session : false}), user.getUserConnected);
 
 app.post('/logout',login.logout);
 
@@ -66,9 +65,10 @@ app.get('/user/:id',user.findById);
 app.get('/public/projects', project.allPublicProjects);
 app.get('/projects',passport.authenticate('jwt', { session : false}),project.allProjects);
 app.get('/projects/:id', passport.authenticate('jwt', { session : false}),project.findById);
+app.post('/projects/:id/users', project.addUserToProject);
 app.post('/projects', passport.authenticate('jwt', { session : false}),project.createProject);
 
-app.get('/userStoriesFromProject/:id',usersStories.UsFromProject);
+app.get('/userStories/:id/project',usersStories.UsFromProject);
 app.post('/userStories',usersStories.createUserStories);
 
 app.delete('/userStories/:id',usersStories.removeUserStory);
