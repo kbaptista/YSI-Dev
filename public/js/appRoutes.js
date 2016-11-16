@@ -47,9 +47,24 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             controller: 'MemberController'
         })
 
+        .when('/project/:id/sprint',{
+            templateUrl: '/YSI-Dev/public/views/sprint.html',
+            controller: 'SprintController'
+        })
+
         .when('/userStories/:id',{
             templateUrl: '/YSI-Dev/public/views/backlog.html',
             controller: 'UsController'
+        })
+
+        .when('/sprint/:id',{
+            templateUrl: '/YSI-Dev/public/views/sprint.html',
+            controller: 'SprintController'
+        })
+
+        .when('/sprint',{
+            templateUrl: '/YSI-Dev/public/views/sprint.html',
+            controller: 'SprintController'
         })
 
         .otherwise({redirectTo : '/home'});

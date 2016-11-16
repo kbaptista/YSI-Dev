@@ -65,17 +65,20 @@
             <div class="content-box">
                 <div class="panel-content">
 
-                    <label>Name : </label><a href="#/project/{{project._id}}" ng-click="setProjectDatas(project.name, project._id)">{{project.name}}</a> <br>
+                    <label>Name : </label><a href="#/project/{{project._id}}" ng-click="setProjectDatas(project.name, project._id,project.nbSprint)">{{project.name}}</a><br>
                     <label>Description : </label>{{project.description}} <br>
                     <label>Product Owner : </label>{{project.po}} <br>
                     <label>Developpers : </label><br>
                     <label>Starting date : </label>{{project.startDate | date : "MM/dd/yyyy"}} <br>
                     <label>Duration :</label><br>
+                    <label>Nbr Sprint : </label><a href="#/sprint/{{project._id}}" ng-click="CountSprintFromProject(project._id)">{{project.nbSprint}}</a><br>
+
+
                 </div>
                 <div class="panel-options">
                     <button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target=""  title="Edit"></button>
                     <button class="glyphicon glyphicon-user" title="Team"></button>
-                    <button class="glyphicon glyphicon-folder-open" title="Open"></button>
+                    <button class="glyphicon glyphicon-tasks" title="Sprint" ng-click=""></button>
                     <button class="glyphicon glyphicon-trash" title="Remove"></button>
                 </div>
             </div>
