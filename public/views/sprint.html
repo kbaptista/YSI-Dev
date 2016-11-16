@@ -1,38 +1,28 @@
 <div class="panel-heading">
-    <div class="panel-title"><h2>Sprint project</h2>
+    <div class="panel-title"><h2>Sprints project : {{projectName}}</h2>
         <h3></h3>
     </div>
 </div>
-
 <div class="panel-body">
 
-<div class="table-responsive">
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Start Date</th>
-            <th>Dead Line</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-init="$i = 0" ng-repeat="$i in projectNbSprint" ng-if="$i <= projectNbSprint.length">
-            <form method="post" ng-submit="createSprint(sprint.name,sprint.startDate,sprint.deadLine,sprint.projectId)" ng-controller="SprintController">
-                <td>
-                    <input type="text" class="form-control" id="Name" ng-model="sprint.name" >
-                </td>
-                <td>
-                    <input type="date" class="form-control" id="startDate" ng-model="sprint.startDate">
-                </td>
-                <td>
-                    <input type="date" class="form-control" id="deadLine" ng-model="sprint.deadLine">
-                </td>
-                <td>
-                <button type="submit" class="btn btn-default" id="ButtonCreateSprint">Create Sprint</button>
-                </td>
-            </form>
-        </tr>
-        </tbody>
-    </table>
-</div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Start Date</th>
+                <th>Dead Line</th>
+                <th>User Stories</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="sprint in sprints">
+                <td>Sprint {{sprint.id}}</td>
+                <td>{{sprint.startDate}}</td>
+                <td>{{sprint.endDate}}</td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
