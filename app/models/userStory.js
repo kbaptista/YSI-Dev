@@ -11,6 +11,6 @@ usSchema.add({
     idProject : String
 });
 
-var UserStroy = mongoose.model('UserStroy',usSchema);
+var UserStory = mongoose.model('UserStroy',usSchema);
 exports.schema = usSchema;
-exports.model = UserStroy;
+exports.model = UserStory;

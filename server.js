@@ -75,11 +75,10 @@ app.delete('/userStories/:id',usersStories.removeUserStory);
 app.get('/userStories/:id',usersStories.getUserStoryById);
 app.put('/userStories/:id',usersStories.updateUserStory);
 
-app.post('/sprint',sprint.createSprint);
-app.delete('/sprint/:id',sprint.removeSprint);
-app.get('/sprint/:id',sprint.getSprintById);
-app.get('/sprint/:id',sprint.SprintFromProject);
-app.get('/sprint/:id',sprint.CountSprintFromProject);
-app.put('/sprint/:id',sprint.updateSprint);
+app.post('/sprints',sprint.createSprint);
+app.delete('/sprints/:id',sprint.removeSprint);
+app.get('/sprints/:id',sprint.getSprintById);
+app.get('/sprints/:id/project',sprint.SprintFromProject);
+app.put('/sprints/:id',sprint.updateSprint);
 
 app.listen(port);

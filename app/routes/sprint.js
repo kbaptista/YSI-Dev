@@ -1,20 +1,6 @@
 var sprintModel = require('../models/sprint').model;
 var project = require('../models/project').model;
 
-exports.CountSprintFromProject = function (req, res) {
-    var id = req.params.id;
-    project.findById({_id:id},function (err,data) {
-        if(!err){
-            var SprintCount = data.nbSprint;
-            res.status(200).send(SprintCount);
-        }
-        else{
-            console.error(err);
-            res.status(500).send(err);
-        }
-    });
-};
-
 exports.SprintFromProject = function(req,res){
     sprintModel.find({}, function(err,docs){
         if(!err){
@@ -37,6 +23,7 @@ exports.createSprint = function(req,res){
         name:req.body.name,
         startDate : req.body.startDate,
         deadLine :req.body.deadLine,
+        userStories: req.body.us,
         idProject :req.body.idProject
     });
 

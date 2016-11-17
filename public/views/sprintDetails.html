@@ -1,0 +1,28 @@
+<div class="panel-heading">
+    <div class="panel-title"><h2>Sprints project : {{projectName}}</h2>
+        <h3>Sprint {{sprintName}}</h3>
+    </div>
+</div>
+
+<div class="panel-body">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Effort</th>
+                <th>Priority</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="us in userStories">
+                <td>{{us.name}}</td>
+                <td>{{us.description}}</td>
+                <td>{{us.effort}}</td>
+                <td>{{us.priority}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

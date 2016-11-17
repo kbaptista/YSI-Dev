@@ -1,4 +1,4 @@
-angular.module('LocalMenuCtrl',[]).controller('LocalMenuController', function($scope, ProjectService) {
+angular.module('LocalMenuCtrl',[]).controller('LocalMenuController', function() {
     console.log('-> LocalMenu controller');
 
     //$scope.projectId = ProjectService.getId();

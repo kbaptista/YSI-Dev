@@ -5,51 +5,38 @@ angular.module('SprServ', []).factory('SprintService', function($http, API_ENDPO
         getSprintById: function(id_sprint){
             return $http({
                 method: 'GET',
-                url: API_ENDPOINT.url + '/sprint/'+id_sprint
+                url: API_ENDPOINT.url + '/sprints/'+id_sprint
             });
         },
 
-        SprintFromProject: function(id_project){
+        getSprintFromProject: function(id_project){
             return $http({
                 method: 'GET',
-                url: API_ENDPOINT.url + '/sprint/'+id_project
+                url: API_ENDPOINT.url + '/sprints/'+ id_project + '/project'
             });
         },
 
-       CountSprintFromProject: function(id_project){
-            return $http({
-                method: 'GET',
-                url: API_ENDPOINT.url + '/sprint/'+id_project
-            });
-        },
 
-        createSprint: function(name,startDate,deadLine,id_project){
-            var dataJson = JSON.stringify({
-                name:name,
-                startDate:startDate,
-                deadLine:deadLine,
-                idProject : id_project
-
-            });
+        createSprint: function(sprint){
             return $http({
                 method: 'POST',
-                url: API_ENDPOINT.url + '/sprint',
+                url: API_ENDPOINT.url + '/sprints',
                 headers: {'Content-Type' : 'application/json'},
-                data: dataJson
+                data: sprint
             });
         },
 
         removeSprint: function (id) {
             return $http({
                 method: 'DELETE',
-                url: API_ENDPOINT.url + '/sprint/'+id
+                url: API_ENDPOINT.url + '/sprints/'+id
             });
         },
 
         updateSprint: function (id,updateSprint) {
             return $http({
                 method: 'PUT',
-                url: API_ENDPOINT.url + '/sprint/'+ id,
+                url: API_ENDPOINT.url + '/sprints/'+ id,
                 headers: {'Content-Type': 'application/json'},
                 data: updateSprint
             });

@@ -1,10 +1,8 @@
 <div class="panel-heading">
     <div class="panel-title"><h2>Sprints project : {{projectName}}</h2>
-        <h3></h3>
     </div>
 </div>
 <div class="panel-body">
-
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -17,10 +15,39 @@
             </thead>
             <tbody>
             <tr ng-repeat="sprint in sprints">
-                <td>Sprint {{sprint.id}}</td>
+                <td><a href="#/project/{{projectId}}/sprints/{{sprint.name}}" >Sprint {{sprint.name}}</a></td>
                 <td>{{sprint.startDate}}</td>
-                <td>{{sprint.endDate}}</td>
+                <td>{{sprint.deadLine}}</td>
                 <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="panel-body">
+    <div class="table-responsive">
+        <h2 ng-click="test()">User Stories list</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Effort</th>
+                <th>Priority</th>
+                <th>Select Sprint</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="us in userStories">
+                <td>{{us.name}}</td>
+                <td>{{us.description}}</td>
+                <td>{{us.effort}}</td>
+                <td>{{us.priority}}</td>
+                <td>
+                    <select ng-model="selectedSprint" ng-options="sprint as sprint.name for sprint in sprints"></select>
+                    <button class="btn btn-default" ng-click="addUsToSprint(us._id)">Add</button>
+                </td>
             </tr>
             </tbody>
         </table>

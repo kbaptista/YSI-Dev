@@ -1,4 +1,4 @@
-angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService, $rootScope){
+angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService, $rootScope, SprintService){
 
     console.log('-> project controller');
     var currentUser = {
@@ -7,6 +7,13 @@ angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,
         email:'',
         password:'',
         idProjects: []
+    };
+
+    var sprint = {
+        name:'',
+        startDate: '',
+        deadLine: '',
+        idProject: ''
     };
 
     AuthenticationService.userConnected().success(function(user){
@@ -58,7 +65,25 @@ angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,
     $scope.createProject = function createProject(name,desc,nbSprint,start,duration, isPrivate){ /* by default, Product Owner = Scrum Master = Current User */
         console.log(isPrivate);
         if(name !== undefined && desc !== undefined && nbSprint !== undefined && start !== undefined && duration !== undefined && isPrivate !== undefined){
-            ProjectService.createProject(name,desc,nbSprint,start,duration, isPrivate, currentUser).success(function(data){
+            ProjectService.createProject(name,desc,nbSprint,start,duration, isPrivate, currentUser).success(function(project){
+                    /* Create Sprints of the project HERE
+                    ** Format Dates with momentjs and save sprint in the DB */
+                    var referenceStartDate = moment(project.startDate);
+                    var formatEndDate = moment(referenceStartDate);
+
+                    for(var i = 0; i < project.nbSprint; ++i){
+                        referenceStartDate.add(7*i,'days');
+                        formatEndDate.add(7 * project.dureeSprint, 'days');
+                        sprint = {
+                            name: i,
+                            startDate: referenceStartDate.toString(),
+                            deadLine: formatEndDate.toString(),
+                            idProject: project._id
+                        };
+                        SprintService.createSprint(sprint);
+                        referenceStartDate.subtract(7*i,'days');
+                    }
+
                     $route.reload();
                     $('#modalCreateProject').modal('hide');
                 })
