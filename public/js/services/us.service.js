@@ -16,7 +16,6 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
                 effort : effort,
                 priority : priority,
                 idProject : id_project
-
             });
             return $http({
                 method: 'POST',

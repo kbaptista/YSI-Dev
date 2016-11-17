@@ -6,7 +6,7 @@ exports.UsFromProject = function(req,res){
             var userStories = [];
             for(var i = 0; i < docs.length; ++i){
                 if (req.params.id == docs[i].idProject)
-                userStories.push(docs[i]);
+                    userStories.push(docs[i]);
             }
             res.status(200).send(userStories);
         }
@@ -23,7 +23,6 @@ exports.createUserStories = function(req,res){
         description :req.body.description,
         effort : req.body.effort,
         priority :req.body.priority,
-        //idTasks : req.body.
         idProject :req.body.idProject
     });
 
@@ -63,10 +62,16 @@ exports.updateUserStory = function (req, res) {
     US.findById(req.params.id, function(err, us){
         if(!err){
             if(us){
-                us.name = req.body.name;
-                us.description = req.body.description;
-                us.effort = req.body.effort;
-                us.priority = req.body.priority;
+                if(req.body.name)
+                    us.name = req.body.name;
+                if(req.body.description)
+                    us.description = req.body.description;
+                if(req.body.effort)
+                    us.effort = req.body.effort;
+                if(req.body.priority)
+                    us.priority = req.body.priority;
+                if(req.body.sprint)
+                    us.sprint = req.body.sprint;
                 us.save();
                 res.status(200).send(us);
             }

@@ -7,6 +7,10 @@ body {
     padding: 0px;
 }
 
+.size-select{
+    width:60px;
+}
+
 .padding-left{
     padding-left: 20px;
 }

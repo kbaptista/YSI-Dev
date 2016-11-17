@@ -45,7 +45,8 @@
                 <td>{{us.effort}}</td>
                 <td>{{us.priority}}</td>
                 <td>
-                    <select ng-model="selectedSprint" ng-options="sprint as sprint.name for sprint in sprints"></select>
+                    <select ng-model="selected.sprint" class="form-control size-select" ng-options="sprint._id as sprint.name for sprint in sprints track by sprint._id" >
+                    </select>
                     <button class="btn btn-default" ng-click="addUsToSprint(us._id)">Add</button>
                 </td>
             </tr>

@@ -6,7 +6,6 @@ sprintSchema.add({
     name : String,
     startDate : Date,
     deadLine : Date,
-    userStories:[US],
     idProject : String
 });
 
