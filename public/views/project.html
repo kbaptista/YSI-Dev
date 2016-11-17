@@ -65,12 +65,17 @@
             <div class="content-box">
                 <div class="panel-content">
 
-                    <label>Name : </label><a href="#/project/{{project._id}}" ng-click="setProjectDatas(project.name, project._id)"> {{project.name}}</a> <br>
+                    <label>Name : </label> {{project.name}}<br>
                     <label>Description : </label> {{project.description}} <br>
                     <label>Product Owner : </label> {{project.po}} <br>
                     <label>Developpers : </label><br>
                     <label>Starting date : </label> {{project.startDate | date : "MM/dd/yyyy"}} <br>
                     <label>Duration :</label> {{project.nbSprint}} sprints of {{project.dureeSprint}} weeks<br>
+                </div>
+                <div class="panel-options">
+                    <a href="#/project/{{project._id}}" ng-click="setProjectDatas(project.name, project._id)"><button class="glyphicon glyphicon-folder-open"></button></a>
+                    <button class="glyphicon glyphicon-trash"></button>
+
                 </div>
             </div>
         </div>
