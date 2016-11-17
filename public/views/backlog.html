@@ -85,22 +85,27 @@
     <div class="panel-body">
       <input type="text" placeholder="Search" class="" ng-model="query">
      </div>
-
-<div class="col-md-6" ng-repeat="us in userStories | filter : query">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="content-box">
-                <div class="panel-content">
-                    <label>Name : </label>{{us.name}} <br>
-                    <label>Effort : </label>{{us.effort}} <br>
-                    <label>Priority : </label>{{us.priority}} <br>
-                    <label>Description : </label>{{us.description}}
-                </div>
-                <div class="panel-options">
-                    <button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#modalUpdateUserStory" ng-click="getUserStory(us._id)"></button>
-                    <button class="glyphicon glyphicon-trash" ng-click="removeUserStory(us._id)"></button>
-                </div>
-            </div>
-        </div>
-    </div>
- </div>
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Effort</th>
+            <th>Priority</th>
+            <th>Edit</th>
+            <th>Remove</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="us in userStories | filter : query">
+            <td>{{us.name}}</td>
+            <td>{{us.description}}</td>
+            <td>{{us.effort}}</td>
+            <td>{{us.priority}}</td>
+            <td> <button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#modalUpdateUserStory" ng-click="getUserStory(us._id)"></button></td>
+            <td><button class="glyphicon glyphicon-trash" ng-click="removeUserStory(us._id)"></button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
