@@ -1,5 +1,11 @@
 angular.module('MainCtrl',[]).controller('MainController',function($scope, AuthenticationService, $location, $rootScope){
-    $rootScope.displayProjectMenu = false;
+    function setDisplayMenu() {
+        $rootScope.displayProjectMenu = false;
+    }
+    setDisplayMenu();
+
+    $scope.$on('$routeChangeSuccess',setDisplayMenu);
+
     console.log('-> MainController');
 
     $scope.isActive = function(viewLocation){

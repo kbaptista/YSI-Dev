@@ -1,4 +1,9 @@
 angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,$scope,$location, SprintService,ProjectService,$routeParams, UsService){
+    function setDisplayMenu() {
+        $rootScope.displayProjectMenu = true;
+    }
+    setDisplayMenu();
+
     var project_id = $rootScope.projectId;
 
     $scope.projectName = ProjectService.getName();
@@ -18,7 +23,10 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     });
 
     $scope.addUsToSprint = function(id){
-        console.log(id);
+        UsService.getUserStory(id).success(function(US){
+            // if US is not in the sprint yet then add to the good sprint (selectedSprint.name)
+            // getSprintById and iterate on userStories[]
+        });
     };
 
     //selectedSprint.name to get the ng-model select value
