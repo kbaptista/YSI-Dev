@@ -1,30 +1,7 @@
 <div class="panel-heading">
     <div class="panel-title"><h2>Manage members' project : {{projectName}}</h2>
     </div>
-</div>
-<div class="panel-body">
-    <div class="col-md-5">
-        <h4>Members' project</h4>
-        <div class="table-responsive">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="dev in projects.developpers track by dev._id">
-                    <td>{{dev.name}}</td>
-                    <td>{{dev.email}}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <div class="col-md-7">
-        <div ng-show="errorMessage != ''" class="alert alert-danger" role="alert">{{errorMessage}}</div>
-        <h4>All members</h4>
+    <div class="panel-options">
         <form class="form-inline pull-right padding-left">
             <div class="form-group">
                 <label class="sr-only" for="username">Username</label>
@@ -32,38 +9,64 @@
             </div>
             <button type="submit" class="btn btn-primary" ng-click="addUserProject()">Add user</button>
         </form>
-        <div class="table-responsive">
-            <table class="table table-all-members">
-                <thead>
-                <tr>
-                    <th ng-click="sort('name')">Name
-                        <span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                    </th>
-                    <th ng-click="sort('email')">Email
-                        <span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
-                    </th>
-                    <th>Select</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr dir-paginate="user in users | orderBy: sortKey:reverse| filter : filterUser | itemsPerPage:5">
-
-                    <td>{{user.name}}</td>
-                    <td>{{user.email}}</td>
-                    <td>
-                        <label class="btn btn-default">
-                        <input type="radio" name="selectedUser" id="selectedUser" autocomplete="off" ng-value="user" ng-model="model.selectedOccurence">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </label>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <dir-pagination-controls
-                    max-size="5"
-                    direction-links="true"
-                    boundary-links="true" >
-            </dir-pagination-controls>
-        </div>
     </div>
+</div>
+<div class="panel-body">
+        <div class="col-md-6">
+            <h4>Members' project</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="dev in projects.developpers track by dev._id">
+                        <td>{{dev.name}}</td>
+                        <td>{{dev.email}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div ng-show="errorMessage != ''" class="alert alert-danger" role="alert">{{errorMessage}}</div>
+            <h4>All members</h4>
+            <div class="table-responsive">
+                <table class="table table-all-members">
+                    <thead>
+                    <tr>
+                        <th ng-click="sort('name')">Name
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='name'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th ng-click="sort('email')">Email
+                            <span class="glyphicon sort-icon" ng-show="sortKey=='email'" ng-class="{'glyphicon-chevron-up':reverse,'glyphicon-chevron-down':!reverse}"></span>
+                        </th>
+                        <th>Select</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr dir-paginate="user in users | orderBy: sortKey:reverse| filter : filterUser | itemsPerPage:5">
+
+                        <td>{{user.name}}</td>
+                        <td>{{user.email}}</td>
+                        <td>
+                            <label class="btn btn-default">
+                                <input type="radio" name="selectedUser" id="selectedUser" autocomplete="off" ng-value="user" ng-model="model.selectedOccurence">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <dir-pagination-controls
+                        max-size="5"
+                        direction-links="true"
+                        boundary-links="true" >
+                </dir-pagination-controls>
+            </div>
+        </div>
 </div>
