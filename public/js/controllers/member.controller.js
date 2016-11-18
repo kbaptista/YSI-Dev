@@ -1,4 +1,9 @@
 angular.module('MemberCtrl',[ 'angularUtils.directives.dirPagination']).controller('MemberController', function($route,$rootScope,$scope, UserService, ProjectService, AuthenticationService) {
+    function setDisplayMenu() {
+        $rootScope.displayProjectMenu = true;
+    }
+    setDisplayMenu();
+
     $scope.projectName = ProjectService.getName();
     $scope.sortKey = 'name';
     var id_project = $rootScope.projectId;
