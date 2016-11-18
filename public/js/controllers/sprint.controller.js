@@ -1,10 +1,9 @@
-angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,$scope,$location, SprintService,ProjectService,$routeParams, UsService){
+angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,$scope,$location, SprintService,ProjectService,$route,$routeParams, UsService){
     function setDisplayMenu() {
         $rootScope.displayProjectMenu = true;
     }
     setDisplayMenu();
 
-angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,$scope,$location, SprintService,ProjectService,$route,$routeParams, UsService){
     var project_id = $rootScope.projectId;
 
     $scope.projectName = ProjectService.getName();
