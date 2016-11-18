@@ -33,7 +33,6 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
         });
             // if US is not in the sprint yet then add to the good sprint (selectedSprint.name)
             // getSprintById and iterate on userStories[]
-        });
     };
 
     $scope.createTask = function createTask(name,desc){
