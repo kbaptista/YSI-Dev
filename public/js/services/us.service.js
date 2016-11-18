@@ -10,12 +10,21 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
         },
 
         createUserStories: function(name,desc,effort,priority,id_project){
+            var test = {
+                "_id": "582e31785b987c3bec0d0957",
+                "name": "0",
+                "startDate": "2016-11-16T23:00:00.000Z",
+                "deadLine": "2016-11-23T23:00:00.000Z",
+                "idProject": "582e31785b987c3bec0d0954"
+            };
+
             var dataJson = JSON.stringify({
                 name : name,
                 description : desc,
                 effort : effort,
                 priority : priority,
-                idProject : id_project
+                idProject : id_project,
+                sprint: test
             });
             return $http({
                 method: 'POST',

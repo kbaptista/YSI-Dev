@@ -23,7 +23,8 @@ exports.createUserStories = function(req,res){
         description :req.body.description,
         effort : req.body.effort,
         priority :req.body.priority,
-        idProject :req.body.idProject
+        idProject :req.body.idProject,
+        sprint: req.body.sprint
     });
 
     us.save(function(err,Us){
