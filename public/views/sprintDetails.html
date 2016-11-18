@@ -1,10 +1,42 @@
+<div id="modalCreateTask" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add Task</h4>
+            </div>
+            <div class="modal-body">
+                <form method="post" ng-submit="createTask(task.name,task.description)">
+                    <div class="form-group">
+                        <label for="TaskName">Name</label>
+                        <input type="text" class="form-control" id="TaskName" ng-model="task.name">
+                    </div>
+                    <div class="form-group">
+                        <label for="TaskDescription">Description</label>
+                        <textarea class="form-control" id="TaskDescription" placeholder="Description" ng-model="task.description" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Add</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
 <div class="panel-heading">
     <div class="panel-title"><h2>Sprints project : {{projectName}}</h2>
         <h3>Sprint {{sprintName}}</h3>
     </div>
+    <div class="panel-options">
+        <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCreateTask">Add Task</button>
+    </div>
 </div>
 
 <div class="panel-body">
+    <div class="panel-title"><h2>User Stories</h2></div>
     <div class="table-responsive">
         <table class="table">
             <thead>
@@ -21,6 +53,29 @@
                 <td>{{us.description}}</td>
                 <td>{{us.effort}}</td>
                 <td>{{us.priority}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-title"><h2>Tasks</h2></div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>User Story</th>
+                <th>Developper</th>
+                <th>Remove</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="task in tasks">
+                <td>{{task.name}}</td>
+                <td>{{task.description}}</td>
+                <td></td>
+                <td></td>
+                <td><button class="glyphicon glyphicon-trash" ng-click="removeTask(task._id)"></button></td>
             </tr>
             </tbody>
         </table>

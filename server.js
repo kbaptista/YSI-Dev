@@ -81,4 +81,8 @@ app.get('/sprints/:id',sprint.getSprintById);
 app.get('/sprints/:id/project',sprint.SprintFromProject);
 app.put('/sprints/:id',sprint.updateSprint);
 
+app.post('/tasks',sprint.createTask);
+app.get('/tasks',sprint.getTasks);
+app.delete('/tasks/:id',sprint.removeTask);
+
 app.listen(port);
