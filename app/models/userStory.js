@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var Task = require('./task').schema;
-var Sprint = require('./sprint').schema;
 
 var usSchema = new mongoose.Schema();
 usSchema.add({
@@ -9,7 +8,7 @@ usSchema.add({
     effort : Number,
     priority : Number,
     tasks : [Task],
-    sprint: Sprint,
+    sprint: String,
     idProject : String
 });
 

@@ -85,7 +85,7 @@ exports.removeTask = function (req,res) {
     });
 };
 
- exports.getSprintById = function (req, res) {
+exports.getSprintById = function (req, res) {
     var id = req.params.id;
     sprintModel.findById({_id:id},function (err,data) {
         if(!err){
@@ -99,13 +99,34 @@ exports.removeTask = function (req,res) {
     });
 };
 
- exports.updateSprint = function (req, res) {
+exports.addUsToSprint = function(req, res){
+    sprintModel.findById(req.params.id, function(err, sprint){
+        if(!err){
+            if(sprint) {
+                if (req.body.us) {
+                    sprint.us.push(req.body.us);
+                    sprint.save();
+                    res.status(200).send(sprint);
+                }
+            }
+            else{
+                res.status(404).send(err);
+            }
+        }
+        else{
+            console.error(err);
+            res.status(500).send(err);
+        }
+
+    })
+};
+
+exports.updateSprint = function (req, res) {
     sprintModel.findById(req.params.id, function(err, sprint){
         if(!err){
             if(sprint){
-                sprint.name = req.body.name;
-                sprint.startDate = req.body.startDate;
-                sprint.deadLine = req.body.deadLine;
+                if(req.body.us)
+                    sprint.us = req.body.us;
                 sprint.save();
                 res.status(200).send(sprint);
             }

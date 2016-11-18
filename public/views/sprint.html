@@ -18,7 +18,7 @@
                 <td><a href="#/project/{{projectId}}/sprints/{{sprint.name}}" >Sprint {{sprint.name}}</a></td>
                 <td>{{sprint.startDate}}</td>
                 <td>{{sprint.deadLine}}</td>
-                <td></td>
+                <td><span ng-repeat="us in sprint.us">{{us.name}} </span></td>
             </tr>
             </tbody>
         </table>

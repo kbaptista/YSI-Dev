@@ -20,27 +20,52 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     });
 
     UsService.getUs(project_id).success(function(listUS){
-       $scope.userStories = listUS;
+        $scope.userStories = listUS;
     });
 
     SprintService.getTasks().success(function(tasks){
-            $scope.tasks = tasks;
-        });
+        $scope.tasks = tasks;
+    });
 
-    $scope.addUsToSprint = function(id){
+    var printSprint = [];
+    var find = false;
+
+    $scope.addUsToSprint = function(id_us){
+        var item = {};
         SprintService.getSprintById($scope.selected.sprint).success(function(sprintRes){
+            var id_sprint = JSON.stringify({sprint: sprintRes._id});
+            UsService.updateUserStory(id_us, id_sprint).success(function(usRes){
+               /* printSprint.forEach(function(element){
+                    if(element.sprint.localeCompare(sprintRes.name) == 0 ){
+                        item['us'].push(usRes.name);
+                        find = true;
+                        return;
+                    }
+                });
+                if(find == false) {
+                    item['sprint'] = sprintRes.name;
 
+                    item['us'] = [];
+                    item['us'].push(usRes.name);
+                }
+                printSprint.push(item);*/
+                var userStoryToAdd = JSON.stringify({us: usRes});
+            SprintService.addUsToSprint(sprintRes._id, userStoryToAdd).success(function(sprintReturn){
+                $route.reload();
+            })
+            });
         });
-            // if US is not in the sprint yet then add to the good sprint (selectedSprint.name)
-            // getSprintById and iterate on userStories[]
+
+        // if US is not in the sprint yet then add to the good sprint ($scope.selected.sprint)
+        // getSprintById and iterate on userStories[]
     };
 
     $scope.createTask = function createTask(name,desc){
         if(name !== undefined && desc !== undefined){
             SprintService.createTask(name,desc).success(function(data){
-                $route.reload();
-                $('#modalCreateTask').modal('hide');
-            })
+                    $route.reload();
+                    $('#modalCreateTask').modal('hide');
+                })
                 .error(function(status,data){
                     console.log('status error = ' + status);
                     console.log('data error = ' + data);

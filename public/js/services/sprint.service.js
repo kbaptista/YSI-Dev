@@ -45,6 +45,15 @@ angular.module('SprServ', []).factory('SprintService', function($http, API_ENDPO
             });
         },
 
+        addUsToSprint: function(id,us){
+            return $http({
+                method: 'POST',
+                url: API_ENDPOINT.url + '/sprints/' + id + '/us',
+                headers: {'Content-Type' : 'application/json'},
+                data: us
+            })
+        },
+
         removeSprint: function (id) {
             return $http({
                 method: 'DELETE',

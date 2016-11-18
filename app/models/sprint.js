@@ -6,7 +6,8 @@ sprintSchema.add({
     name : String,
     startDate : Date,
     deadLine : Date,
-    idProject : String
+    idProject : String,
+    us : [US]
 });
 
 var Sprint = mongoose.model('Sprint',sprintSchema);

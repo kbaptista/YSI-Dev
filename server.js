@@ -14,6 +14,10 @@ var flash = require('connect-flash');
 var configDB = require('./config/db');
 mongoose.connect(configDB.url);
 
+/* DEBBUG MONGOOSE */
+mongoose.set('debug', true);
+/* --------------- */
+
 var port = process.env.PORT || 3000;
 
 var login = require('./app/routes/login');
@@ -80,6 +84,7 @@ app.delete('/sprints/:id',sprint.removeSprint);
 app.get('/sprints/:id',sprint.getSprintById);
 app.get('/sprints/:id/project',sprint.SprintFromProject);
 app.put('/sprints/:id',sprint.updateSprint);
+app.post('/sprints/:id/us', sprint.addUsToSprint);
 
 app.post('/tasks',sprint.createTask);
 app.get('/tasks',sprint.getTasks);
