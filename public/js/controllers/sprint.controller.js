@@ -27,32 +27,16 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
         $scope.tasks = tasks;
     });
 
-    var printSprint = [];
-    var find = false;
-
     $scope.addUsToSprint = function(id_us){
         var item = {};
         SprintService.getSprintById($scope.selected.sprint).success(function(sprintRes){
             var id_sprint = JSON.stringify({sprint: sprintRes._id});
             UsService.updateUserStory(id_us, id_sprint).success(function(usRes){
-               /* printSprint.forEach(function(element){
-                    if(element.sprint.localeCompare(sprintRes.name) == 0 ){
-                        item['us'].push(usRes.name);
-                        find = true;
-                        return;
-                    }
-                });
-                if(find == false) {
-                    item['sprint'] = sprintRes.name;
 
-                    item['us'] = [];
-                    item['us'].push(usRes.name);
-                }
-                printSprint.push(item);*/
                 var userStoryToAdd = JSON.stringify({us: usRes});
-            SprintService.addUsToSprint(sprintRes._id, userStoryToAdd).success(function(sprintReturn){
-                $route.reload();
-            })
+                SprintService.addUsToSprint(sprintRes._id, userStoryToAdd).success(function(sprintReturn){
+                    $route.reload();
+                })
             });
         });
 

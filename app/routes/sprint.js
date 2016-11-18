@@ -100,13 +100,24 @@ exports.getSprintById = function (req, res) {
 };
 
 exports.addUsToSprint = function(req, res){
+    var find = false;
     sprintModel.findById(req.params.id, function(err, sprint){
         if(!err){
             if(sprint) {
                 if (req.body.us) {
-                    sprint.us.push(req.body.us);
-                    sprint.save();
-                    res.status(200).send(sprint);
+                    sprint.us.forEach(function(element){
+                       if(element.name.localeCompare(req.body.us.name) == 0){
+                            find = true;
+                       }
+                    });
+                    if(find == false) {
+                        sprint.us.push(req.body.us);
+                        sprint.save();
+                        res.status(200).send(sprint);
+                    }
+                    else{
+                        res.status(409).send('US ' + req.body.us.name + ' already exists in the sprint');
+                    }
                 }
             }
             else{
