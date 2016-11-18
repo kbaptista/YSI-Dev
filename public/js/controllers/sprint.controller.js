@@ -1,4 +1,4 @@
-angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,$scope,$location, SprintService,ProjectService,$routeParams, UsService){
+angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,$scope,$location, SprintService,ProjectService,$route,$routeParams, UsService){
     function setDisplayMenu() {
         $rootScope.displayProjectMenu = true;
     }
@@ -23,6 +23,9 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
        $scope.userStories = listUS;
     });
 
+    SprintService.getTasks().success(function(tasks){
+            $scope.tasks = tasks;
+        });
 
     $scope.addUsToSprint = function(id){
         SprintService.getSprintById($scope.selected.sprint).success(function(sprintRes){
@@ -30,9 +33,27 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
         });
             // if US is not in the sprint yet then add to the good sprint (selectedSprint.name)
             // getSprintById and iterate on userStories[]
-
-
+        });
     };
 
+    $scope.createTask = function createTask(name,desc){
+        if(name !== undefined && desc !== undefined){
+            SprintService.createTask(name,desc).success(function(data){
+                $route.reload();
+                $('#modalCreateTask').modal('hide');
+            })
+                .error(function(status,data){
+                    console.log('status error = ' + status);
+                    console.log('data error = ' + data);
+                });
+        }
+    };
+
+    $scope.removeTask = function (id) {
+        SprintService.removeTask(id).success(function () {
+            $route.reload();
+        });
+    };
+    //selectedSprint.name to get the ng-model select value
 });
 

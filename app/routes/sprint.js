@@ -1,5 +1,6 @@
 var sprintModel = require('../models/sprint').model;
 var project = require('../models/project').model;
+var taskModel = require('../models/task').model;
 
 exports.SprintFromProject = function(req,res){
     sprintModel.find({}, function(err,docs){
@@ -16,6 +17,21 @@ exports.SprintFromProject = function(req,res){
             res.status(500).send(err);
         }
     });
+};
+
+exports.getTasks = function (req,res) {
+    taskModel.find({},function (err,docs) {
+        if (!err) {
+            var tasks = [];
+            for (var i = 0; i < docs.length; ++i) {
+                tasks.push(docs[i]);
+            }
+            res.status(200).send(tasks);
+        } else {
+            console.error(err);
+            res.status(500).send(err);
+        }
+    })
 };
 
 exports.createSprint = function(req,res){
@@ -38,10 +54,34 @@ exports.createSprint = function(req,res){
     })
 };
 
- exports.removeSprint = function (req,res) {
+exports.createTask = function(req,res){
+    var task = new taskModel({
+        name:req.body.name,
+        description:req.body.description
+    });
+
+    task.save(function(err, Task){
+        if(!err){
+            res.status(200).send(Task);
+        }
+        else{
+            console.log(err);
+            res.status(500).send(err);
+        }
+    })
+};
+
+exports.removeSprint = function (req,res) {
     var id = req.params.id;
     sprintModel.remove({_id:id},function (err) {
         res.json({result: err? 'error': 'Sprint deleted!'+id });
+    });
+};
+
+exports.removeTask = function (req,res) {
+    var id = req.params.id;
+    taskModel.remove({_id:id},function (err) {
+        res.json({result: err? 'error': 'task deleted!'+id });
     });
 };
 
