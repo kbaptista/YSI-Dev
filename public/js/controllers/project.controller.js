@@ -1,6 +1,5 @@
 angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,$location, ProjectService,$route, AuthenticationService, $rootScope, SprintService){
 
-    console.log('-> project controller');
     var currentUser = {
         id: '',
         name: '',

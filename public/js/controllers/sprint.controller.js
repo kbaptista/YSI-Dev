@@ -4,6 +4,7 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     }
     setDisplayMenu();
 
+    var usSprint = [];
     var project_id = $rootScope.projectId;
     $scope.selected = {};
 
@@ -17,7 +18,25 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
             element.deadLine = moment(element.deadLine).format('DD MM YYYY');
         });
         $scope.sprints = sprints;
+        sprints.forEach(function(sprint){
+            sprint.us.forEach(function(us){
+                usSprint.push({
+                    name: us.name,
+                    id: us._id,
+                    description: us.description,
+                    effort: us.effort,
+                    priority: us.priority,
+                    sprint: us.sprint,
+                    idProject: us.idProject,
+                    tasks: us.tasks
+                });
+            });
+        });
+        $scope.usSprint = usSprint;
+        console.log(usSprint);
     });
+
+
 
     UsService.getUs(project_id).success(function(listUS){
         $scope.userStories = listUS;

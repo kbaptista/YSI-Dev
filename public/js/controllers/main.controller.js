@@ -6,8 +6,6 @@ angular.module('MainCtrl',[]).controller('MainController',function($scope, Authe
 
     $scope.$on('$routeChangeSuccess',setDisplayMenu);
 
-    console.log('-> MainController');
-
     $scope.isActive = function(viewLocation){
         return viewLocation == $location.path();
     };
