@@ -14,8 +14,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="sprint in sprints">
-                <td><a href="#/project/{{projectId}}/sprints/{{sprint.name}}" >Sprint {{sprint.name}}</a></td>
+            <tr ng-repeat="sprint in sprints | orderBy:'-name'">
+                <td><a href="#/project/{{projectId}}/sprints/{{sprint.name}}" ng-click="setIdSprint(sprint._id)">Sprint {{sprint.name}}</a></td>
                 <td>{{sprint.startDate}}</td>
                 <td>{{sprint.deadLine}}</td>
                 <td><span ng-repeat="us in sprint.us">{{us.name}} </span></td>

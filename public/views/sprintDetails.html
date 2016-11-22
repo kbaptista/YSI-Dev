@@ -52,7 +52,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="us in usSprint">
+            <tr ng-repeat="us in usSprints track by us._id">
                 <td>{{us.name}}</td>
                 <td>{{us.description}}</td>
                 <td>{{us.effort}}</td>
@@ -69,7 +69,6 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>User Story</th>
-                <th>Developper</th>
                 <th>Remove</th>
             </tr>
             </thead>
@@ -77,7 +76,6 @@
             <tr ng-repeat="task in tasks">
                 <td>{{task.name}}</td>
                 <td>{{task.description}}</td>
-                <td></td>
                 <td></td>
                 <td><button class="glyphicon glyphicon-trash" ng-click="removeTask(task._id)"></button></td>
             </tr>
