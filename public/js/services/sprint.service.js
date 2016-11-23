@@ -1,6 +1,32 @@
 angular.module('SprServ', []).factory('SprintService', function($http, API_ENDPOINT) {
 
+    var sprint = {
+        id:'',
+        name:'',
+        startDate:'',
+        deadLine:'',
+        idProject:'',
+        us:[]
+    };
+
+    var allSprints = [];
     return{
+
+        setAllSprints: function(sprintFull){
+            allSprints = sprintFull;
+        },
+
+        getAllSprints: function(){
+            return allSprints;
+        },
+
+        setSprintId: function(id){
+            sprint.id = id;
+        },
+
+        getSprintId: function(){
+            return sprint.id
+        },
 
         getSprintById: function(id_sprint){
             return $http({

@@ -4,43 +4,15 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     }
     setDisplayMenu();
 
-    var usSprint = [];
-    var sprintIdSelected;
+
     var project_id = $rootScope.projectId;
     $scope.selected = {};
     $scope.projectName = ProjectService.getName();
     $scope.sprintName = $routeParams.sprintName;
-    $scope.usSprints = [];
 
     $scope.setIdSprint = function(idSprint){
-        sprintIdSelected = idSprint;
-
-        $scope.sprints.forEach(function(sprint){
-            if(sprint._id.localeCompare(sprintIdSelected) == 0) {
-                sprint.us.forEach(function (us) {
-                    usSprint.push({
-                        name: us.name,
-                        id: us._id,
-                        description: us.description,
-                        effort: us.effort,
-                        priority: us.priority,
-                        sprint: us.sprint,
-                        idProject: us.idProject,
-                        tasks: us.tasks
-                    });
-                });
-            }
-        });
-        console.log(usSprint);
-        $scope.usSprints = usSprint;
+        SprintService.setSprintId(idSprint);
     };
-
-    function test(){
-        console.log('call');
-        $scope.usSprints = usSprint;
-    }
-
-    $scope.$on('$routeUpdate',test);
 
     SprintService.getSprintFromProject(project_id).success(function(sprints) {
         sprints.forEach(function (element) {
@@ -48,6 +20,7 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
             element.deadLine = moment(element.deadLine).format('DD MM YYYY');
         });
         $scope.sprints = sprints;
+        SprintService.setAllSprints(sprints);
     });
 
     UsService.getUs(project_id).success(function(listUS){

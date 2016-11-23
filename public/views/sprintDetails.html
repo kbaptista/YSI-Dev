@@ -52,7 +52,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="us in usSprints track by us._id">
+            <tr ng-repeat="us in usSprints track by $index">
                 <td>{{us.name}}</td>
                 <td>{{us.description}}</td>
                 <td>{{us.effort}}</td>
