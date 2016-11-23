@@ -4,39 +4,24 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     }
     setDisplayMenu();
 
-    var usSprint = [];
+
     var project_id = $rootScope.projectId;
     $scope.selected = {};
-
     $scope.projectName = ProjectService.getName();
     $scope.sprintName = $routeParams.sprintName;
 
+    $scope.setIdSprint = function(idSprint){
+        SprintService.setSprintId(idSprint);
+    };
 
-    SprintService.getSprintFromProject(project_id).success(function(sprints){
-        sprints.forEach(function(element){
+    SprintService.getSprintFromProject(project_id).success(function(sprints) {
+        sprints.forEach(function (element) {
             element.startDate = moment(element.startDate).format('DD MM YYYY');
             element.deadLine = moment(element.deadLine).format('DD MM YYYY');
         });
         $scope.sprints = sprints;
-        sprints.forEach(function(sprint){
-            sprint.us.forEach(function(us){
-                usSprint.push({
-                    name: us.name,
-                    id: us._id,
-                    description: us.description,
-                    effort: us.effort,
-                    priority: us.priority,
-                    sprint: us.sprint,
-                    idProject: us.idProject,
-                    tasks: us.tasks
-                });
-            });
-        });
-        $scope.usSprint = usSprint;
-        console.log(usSprint);
+        SprintService.setAllSprints(sprints);
     });
-
-
 
     UsService.getUs(project_id).success(function(listUS){
         $scope.userStories = listUS;
@@ -47,7 +32,6 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     });
 
     $scope.addUsToSprint = function(id_us){
-        var item = {};
         SprintService.getSprintById($scope.selected.sprint).success(function(sprintRes){
             var id_sprint = JSON.stringify({sprint: sprintRes._id});
             UsService.updateUserStory(id_us, id_sprint).success(function(usRes){

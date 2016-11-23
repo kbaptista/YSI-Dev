@@ -17,5 +17,6 @@ angular.module('ysi-app',
         'LocalMenuCtrl',
         'MemberCtrl',
         'UserServ',
-        'MemberCtrl'
+        'MemberCtrl',
+        'SprDetailsCtrl'
     ]);
