@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var US = require('./userStory').schema;
+var US = require('./userStory').model;
 
 var sprintSchema = new mongoose.Schema();
 sprintSchema.add({
@@ -7,7 +7,7 @@ sprintSchema.add({
     startDate : Date,
     deadLine : Date,
     idProject : String,
-    us : [US]
+    us : [{type : mongoose.Schema.Types.ObjectId, ref: 'UserStroy'}] // pour créer une référence vers une US (ici un tableau de US)
 });
 
 var Sprint = mongoose.model('Sprint',sprintSchema);

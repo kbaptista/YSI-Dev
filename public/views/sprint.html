@@ -28,6 +28,8 @@
 <div class="panel-body">
     <div class="table-responsive">
         <h2 ng-click="test()">User Stories list</h2>
+        <div ng-show="errorMessage != ''" class="alert alert-danger" role="alert">{{errorMessage}}</div>
+        <div ng-show="successMessage != ''" class="alert alert-success" role="alert">{{successMessage}}</div>
         <table class="table">
             <thead>
             <tr>

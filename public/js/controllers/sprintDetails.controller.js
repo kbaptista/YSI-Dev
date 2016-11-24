@@ -1,4 +1,4 @@
-angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', function($rootScope,$scope, SprintService){
+angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', function($rootScope,$scope, $route, $routeParams, SprintService, UsService, ProjectService){
     function setDisplayMenu() {
         $rootScope.displayProjectMenu = true;
     }
@@ -6,9 +6,12 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
 
     var sprintId;
     var usSprint = [];
-    var allSprints;;
+    var allSprints;
 
     $scope.usSprints = [];
+    $scope.task = {};
+    $scope.projectName = ProjectService.getName();
+    $scope.sprintName = $routeParams.sprintName;
 
     sprintId = SprintService.getSprintId();
     allSprints = SprintService.getAllSprints();
@@ -30,4 +33,19 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
         }
     });
     $scope.usSprints = usSprint;
+
+    $scope.createTask = function(){
+        SprintService.createTask($scope.task).success(function(taskCreated){
+            var data = {"task" : taskCreated};
+            UsService.addTaskToUs($scope.task.idUs, data).success(function(usUpdated){
+                SprintService.getTasksFromSprint(sprintId).success(function(allTasks){
+                    $scope.tasks = allTasks;
+                    console.log(allTasks);
+                    $route.reload();
+                    $('#modalCreateTask').modal('hide');
+                });
+            });
+        });
+    };
 });
+

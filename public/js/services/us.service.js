@@ -10,7 +10,6 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
         },
 
         createUserStories: function(name,desc,effort,priority,id_project){
-
             var dataJson = JSON.stringify({
                 name : name,
                 description : desc,
@@ -46,6 +45,22 @@ angular.module('UsServ', []).factory('UsService', function($http, API_ENDPOINT){
                 url: API_ENDPOINT.url + '/userStories/'+ id,
                 headers: {'Content-Type': 'application/json'},
                 data: updateUS
+            });
+        },
+
+        addTaskToUs: function(id,task){
+            return $http({
+                method: 'POST',
+                url: API_ENDPOINT.url + '/userStories/' + id + '/tasks',
+                headers: {'Content-Type': 'application/json'},
+                data: task
+            });
+        },
+
+        getTasksFromUs: function(id){
+            return $http({
+                method: 'GET',
+                url: API_ENDPOINT.url + '/userStories/' + id + '/tasks'
             });
         }
     }

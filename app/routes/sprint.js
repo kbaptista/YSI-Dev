@@ -7,7 +7,7 @@ exports.SprintFromProject = function(req,res){
         if(!err){
             var sprints = [];
             for(var i = 0; i < docs.length; ++i){
-                if (req.params.id == docs[i].idProject)
+                if (req.params.id.toString().localeCompare(docs[i].idProject) == 0)
                     sprints.push(docs[i]);
             }
             res.status(200).send(sprints);
@@ -39,7 +39,7 @@ exports.createSprint = function(req,res){
         name:req.body.name,
         startDate : req.body.startDate,
         deadLine :req.body.deadLine,
-        userStories: req.body.us,
+        us: req.body.us,
         idProject :req.body.idProject
     });
 
@@ -57,7 +57,8 @@ exports.createSprint = function(req,res){
 exports.createTask = function(req,res){
     var task = new taskModel({
         name:req.body.name,
-        description:req.body.description
+        description:req.body.description,
+        idUs: req.body.us
     });
 
     task.save(function(err, Task){
@@ -68,7 +69,7 @@ exports.createTask = function(req,res){
             console.log(err);
             res.status(500).send(err);
         }
-    })
+    });
 };
 
 exports.removeSprint = function (req,res) {
@@ -89,8 +90,7 @@ exports.getSprintById = function (req, res) {
     var id = req.params.id;
     sprintModel.findById({_id:id},function (err,data) {
         if(!err){
-            var sprint = data;
-            res.status(200).send(sprint);
+            res.status(200).send(data);
         }
         else{
             console.error(err);
@@ -106,12 +106,14 @@ exports.addUsToSprint = function(req, res){
             if(sprint) {
                 if (req.body.us) {
                     sprint.us.forEach(function(element){
-                       if(element.name.localeCompare(req.body.us.name) == 0){
+                        console.log(element.toString());
+                        console.log(req.body.us._id);
+                       if(element.toString() === req.body.us._id ){ // US déjà présente dans le sprint
                             find = true;
                        }
                     });
                     if(find == false) {
-                        sprint.us.push(req.body.us);
+                        sprint.us.push(req.body.us._id);
                         sprint.save();
                         res.status(200).send(sprint);
                     }
@@ -137,7 +139,7 @@ exports.updateSprint = function (req, res) {
         if(!err){
             if(sprint){
                 if(req.body.us)
-                    sprint.us = req.body.us;
+                    sprint.us = req.body.us._id;
                 sprint.save();
                 res.status(200).send(sprint);
             }
@@ -149,4 +151,57 @@ exports.updateSprint = function (req, res) {
             res.status(500).send(err);
         }
     })
+};
+
+exports.getTaskById = function(req,res){
+    taskModel.findById({_id:req.params.id},function (err,data) {
+        if(!err){
+            res.status(200).send(data);
+        }
+        else{
+            console.error(err);
+            res.status(500).send(err);
+        }
+    });
+};
+
+exports.getTasksFromSprint = function(req,res){
+  sprintModel.findById(req.params.id, function(err,sprint){
+    if(!err){
+        if(sprint){
+            var tasks = [];
+            sprint.us.forEach(function(elemUS){
+                elemUS.tasks.forEach(function(elemTask){
+                    tasks.push(elemTask);
+                });
+            });
+            res.status(200).send(tasks);
+        }
+        else{
+            res.status(404).send(err);
+        }
+    }
+      else{
+        console.error(err);
+        res.status(500).send(err);
+    }
+  });
+};
+
+exports.getUsFromSprint = function(req,res){
+  sprintModel.findById(req.params.id).populate('us').exec(function(err,sprint){
+      if(!err){
+          if(sprint){
+              res.status(200).send(sprint.us);
+          }
+          else{
+              res.status(404).send(err);
+          }
+      }
+      else{
+          console.error(err);
+          res.status(500).send(err);
+      }
+
+  });
 };

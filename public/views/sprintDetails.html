@@ -7,7 +7,7 @@
                 <h4 class="modal-title">Add Task</h4>
             </div>
             <div class="modal-body">
-                <form method="post" ng-submit="createTask(task.name,task.description)">
+                <form method="post" ng-submit="createTask()">
                     <div class="form-group">
                         <label for="TaskName">Name</label>
                         <input type="text" class="form-control" id="TaskName" ng-model="task.name">
@@ -17,8 +17,9 @@
                         <textarea class="form-control" id="TaskDescription" placeholder="Description" ng-model="task.description" rows="3"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="TaskUs">User Story</label>
-                        <select type="text" class="form-control" id="TaskUs" ng-model="task.us"></select>
+                        <label for="TaskUS">User Story</label>
+                        <select id="TaskUS" ng-model="task.idUs" class="form-control size-select-us" ng-options="us.id as us.name for us in usSprints track by us.id" >
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-default">Add</button>
                 </form>

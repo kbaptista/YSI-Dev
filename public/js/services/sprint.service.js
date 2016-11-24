@@ -10,6 +10,7 @@ angular.module('SprServ', []).factory('SprintService', function($http, API_ENDPO
     };
 
     var allSprints = [];
+
     return{
 
         setAllSprints: function(sprintFull){
@@ -58,16 +59,12 @@ angular.module('SprServ', []).factory('SprintService', function($http, API_ENDPO
             });
         },
 
-        createTask: function(name,desc){
-            var dataJson = JSON.stringify({
-                name : name,
-                description : desc
-            });
+        createTask: function(task){
             return $http({
                 method: 'POST',
                 url: API_ENDPOINT.url + '/tasks',
                 headers: {'Content-Type' : 'application/json'},
-                data: dataJson
+                data: task
             });
         },
 
@@ -100,6 +97,13 @@ angular.module('SprServ', []).factory('SprintService', function($http, API_ENDPO
                 url: API_ENDPOINT.url + '/sprints/'+ id,
                 headers: {'Content-Type': 'application/json'},
                 data: updateSprint
+            });
+        },
+
+        getTasksFromSprint: function(id){
+            return $http({
+                method: 'GET',
+                url: API_ENDPOINT.url + '/sprints/' + id + '/tasks'
             });
         }
    }

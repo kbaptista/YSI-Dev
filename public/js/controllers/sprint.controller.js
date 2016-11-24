@@ -9,6 +9,8 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     $scope.selected = {};
     $scope.projectName = ProjectService.getName();
     $scope.sprintName = $routeParams.sprintName;
+    $scope.errorMessage = '';
+    $scope.successMessage = '';
 
     $scope.setIdSprint = function(idSprint){
         SprintService.setSprintId(idSprint);
@@ -35,11 +37,15 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
         SprintService.getSprintById($scope.selected.sprint).success(function(sprintRes){
             var id_sprint = JSON.stringify({sprint: sprintRes._id});
             UsService.updateUserStory(id_us, id_sprint).success(function(usRes){
-
                 var userStoryToAdd = JSON.stringify({us: usRes});
                 SprintService.addUsToSprint(sprintRes._id, userStoryToAdd).success(function(sprintReturn){
-                    $route.reload();
-                })
+                        $route.reload();
+                        $scope.successMessage = 'User story successfully added !';
+
+                    })
+                    .error(function(err){
+                        $scope.errorMessage = 'User story already in this sprint';
+                    })
             });
         });
 
@@ -47,24 +53,11 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
         // getSprintById and iterate on userStories[]
     };
 
-    $scope.createTask = function createTask(name,desc){
-        if(name !== undefined && desc !== undefined){
-            SprintService.createTask(name,desc).success(function(data){
-                    $route.reload();
-                    $('#modalCreateTask').modal('hide');
-                })
-                .error(function(status,data){
-                    console.log('status error = ' + status);
-                    console.log('data error = ' + data);
-                });
-        }
-    };
 
     $scope.removeTask = function (id) {
         SprintService.removeTask(id).success(function () {
             $route.reload();
         });
     };
-    //selectedSprint.name to get the ng-model select value
 });
 

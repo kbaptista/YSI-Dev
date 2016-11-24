@@ -35,7 +35,7 @@ exports.createUserStories = function(req,res){
             console.log(err);
             res.status(500).send(err);
         }
-    })
+    });
 };
 
 exports.removeUserStory = function (req,res) {
@@ -49,8 +49,7 @@ exports.getUserStoryById = function (req, res) {
     var id = req.params.id;
     US.findById({_id:id},function (err,data) {
         if(!err){
-            var UserStory = data;
-            res.status(200).send(UserStory);
+            res.status(200).send(data);
         }
         else{
             console.error(err);
@@ -83,5 +82,59 @@ exports.updateUserStory = function (req, res) {
             console.error(err);
             res.status(500).send(err);
         }
-    })
+    });
+};
+
+exports.addTaskToUserStory = function(req,res){
+  var find = false;
+    US.findById(req.params.id, function(err, us){
+       if(!err){
+           if(us){
+               if(req.body.task){
+                   us.tasks.forEach(function(element){
+                       if(element._id.toString().localeCompare(req.body.task._id) == 0){
+                           find = true;
+                       }
+                   });
+                   if(find == false){
+                       us.tasks.push(req.body.task);
+                       us.save();
+                       res.status(200).send(us);
+                   }
+                   else{
+                       res.status(409).send('tasks ' + req.body.task.name + ' already exists in the US');
+                   }
+               }
+           }
+           else{
+               res.status(404).send(err);
+           }
+       }
+       else{
+           console.error(err);
+           res.status(500).send(err);
+       }
+
+    });
+};
+
+exports.getTasksFromUs = function(req,res){
+    US.findById(req.params.id, function(err,us){
+       if(!err){
+           if(us){
+               var tasks = [];
+               us.tasks.forEach(function(element){
+                  tasks.push(element);
+               });
+               res.status(200).send(tasks);
+           }
+           else{
+               res.status(404).send(err);
+           }
+       }
+        else{
+           console.error(err);
+           res.status(500).send(err);
+       }
+    });
 };
