@@ -5,8 +5,6 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
     setDisplayMenu();
 
     var sprintId;
-    var usSprint = [];
-    var allSprints;
 
     $scope.usSprints = [];
     $scope.task = {};
@@ -14,25 +12,10 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
     $scope.sprintName = $routeParams.sprintName;
 
     sprintId = SprintService.getSprintId();
-    allSprints = SprintService.getAllSprints();
 
-    allSprints.forEach(function(sprint){
-        if(sprint._id.localeCompare(sprintId) == 0) {
-            sprint.us.forEach(function (us) {
-                usSprint.push({
-                    name: us.name,
-                    id: us._id,
-                    description: us.description,
-                    effort: us.effort,
-                    priority: us.priority,
-                    sprint: us.sprint,
-                    idProject: us.idProject,
-                    tasks: us.tasks
-                });
-            });
-        }
+    SprintService.getUsFromSprint(sprintId).success(function(usRes){
+       $scope.usSprints = usRes;
     });
-    $scope.usSprints = usSprint;
 
     $scope.createTask = function(){
         SprintService.createTask($scope.task).success(function(taskCreated){
