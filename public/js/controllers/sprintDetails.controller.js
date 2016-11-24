@@ -5,6 +5,7 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
     setDisplayMenu();
 
     var sprintId;
+    var usCurrentSprint = [];
 
     $scope.usSprints = [];
     $scope.task = {};
@@ -17,13 +18,19 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
        $scope.usSprints = usRes;
     });
 
+    SprintService.getUsFromSprint(sprintId).success(function(us) {
+        us.forEach(function(element){
+           usCurrentSprint = usCurrentSprint.concat(element.tasks);
+        });
+        $scope.tasks = usCurrentSprint;
+    });
+
     $scope.createTask = function(){
         SprintService.createTask($scope.task).success(function(taskCreated){
             var data = {"task" : taskCreated};
             UsService.addTaskToUs($scope.task.idUs, data).success(function(usUpdated){
-                SprintService.getTasksFromSprint(sprintId).success(function(allTasks){
-                    $scope.tasks = allTasks;
-                    console.log(allTasks);
+                SprintService.getUsFromSprint(sprintId).success(function(usCurrentSprint){
+                    $scope.tasks = usCurrentSprint.tasks;
                     $route.reload();
                     $('#modalCreateTask').modal('hide');
                 });

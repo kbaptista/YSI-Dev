@@ -1,5 +1,4 @@
 var mongoose = require('mongoose');
-var US = require('./userStory').model;
 
 var sprintSchema = new mongoose.Schema();
 sprintSchema.add({

@@ -58,7 +58,7 @@ exports.createTask = function(req,res){
     var task = new taskModel({
         name:req.body.name,
         description:req.body.description,
-        idUs: req.body.us
+        idUs: req.body.idUs
     });
 
     task.save(function(err, Task){
