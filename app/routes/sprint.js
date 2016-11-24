@@ -104,7 +104,7 @@ exports.addUsToSprint = function(req, res){
     sprintModel.findById(req.params.id, function(err, sprint){
         if(!err){
             if(sprint) {
-                if (req.body.us) {
+                if (req.body.us && req.body.usNames) {
                     sprint.us.forEach(function(element){
                         console.log(element.toString());
                         console.log(req.body.us._id);
@@ -113,6 +113,7 @@ exports.addUsToSprint = function(req, res){
                        }
                     });
                     if(find == false) {
+                        sprint.usNames.push(req.body.usNames);
                         sprint.us.push(req.body.us._id);
                         sprint.save();
                         res.status(200).send(sprint);

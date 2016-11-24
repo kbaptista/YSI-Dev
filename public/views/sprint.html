@@ -14,11 +14,11 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="sprint in sprints | orderBy:'-name'">
+            <tr ng-repeat="sprint in sprints | orderBy:'name'">
                 <td><a href="#/project/{{projectId}}/sprints/{{sprint.name}}" ng-click="setIdSprint(sprint._id)">Sprint {{sprint.name}}</a></td>
                 <td>{{sprint.startDate}}</td>
                 <td>{{sprint.deadLine}}</td>
-                <td><span ng-repeat="us in sprint.us">{{us.name}} </span></td>
+                <td><span ng-repeat="us in sprint.usNames">{{us}} </span></td>
             </tr>
             </tbody>
         </table>

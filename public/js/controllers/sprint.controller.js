@@ -5,6 +5,7 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     setDisplayMenu();
 
 
+    var usInSprint = [];
     var project_id = $rootScope.projectId;
     $scope.selected = {};
     $scope.projectName = ProjectService.getName();
@@ -15,6 +16,8 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     $scope.setIdSprint = function(idSprint){
         SprintService.setSprintId(idSprint);
     };
+
+
 
     SprintService.getSprintFromProject(project_id).success(function(sprints) {
         sprints.forEach(function (element) {
@@ -29,15 +32,12 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
         $scope.userStories = listUS;
     });
 
-    SprintService.getTasks().success(function(tasks){
-        $scope.tasks = tasks;
-    });
 
     $scope.addUsToSprint = function(id_us){
         SprintService.getSprintById($scope.selected.sprint).success(function(sprintRes){
             var id_sprint = JSON.stringify({sprint: sprintRes._id});
             UsService.updateUserStory(id_us, id_sprint).success(function(usRes){
-                var userStoryToAdd = JSON.stringify({us: usRes});
+                var userStoryToAdd = JSON.stringify({usNames: usRes.name, us: usRes});
                 SprintService.addUsToSprint(sprintRes._id, userStoryToAdd).success(function(sprintReturn){
                         $route.reload();
                         $scope.successMessage = 'User story successfully added !';
@@ -51,13 +51,6 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
 
         // if US is not in the sprint yet then add to the good sprint ($scope.selected.sprint)
         // getSprintById and iterate on userStories[]
-    };
-
-
-    $scope.removeTask = function (id) {
-        SprintService.removeTask(id).success(function () {
-            $route.reload();
-        });
     };
 });
 

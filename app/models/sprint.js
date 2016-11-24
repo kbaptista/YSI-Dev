@@ -7,6 +7,7 @@ sprintSchema.add({
     startDate : Date,
     deadLine : Date,
     idProject : String,
+    usNames: [String],
     us : [{type : mongoose.Schema.Types.ObjectId, ref: 'UserStroy'}] // pour créer une référence vers une US (ici un tableau de US)
 });
 
