@@ -29,9 +29,9 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             controller: 'ChartController'
         })
 
-        .when('/team',{
-            templateUrl: '/YSI-Dev/public/views/team.html',
-            controller: 'TeamController'
+        .when('/project/:id/sprints/:name/kanban',{
+            templateUrl: '/YSI-Dev/public/views/kanban.html',
+            controller: 'KanbanController'
         })
 
         .when('/about',{

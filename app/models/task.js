@@ -5,7 +5,8 @@ taskSchema.add({
     name : String,
     description : String,
     idUs: String,
-    usName: String
+    usName: String,
+    etat : String
 });
 
 var Task = mongoose.model('Task', taskSchema);

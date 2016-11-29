@@ -19,5 +19,7 @@ angular.module('ysi-app',
         'UserServ',
         'MemberCtrl',
         'SprDetailsCtrl',
-        'ChartCtrl'
+        'ChartCtrl',
+        'KanbanCtrl',
+        'kanbanServ'
     ]);

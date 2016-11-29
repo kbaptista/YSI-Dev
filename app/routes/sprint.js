@@ -59,7 +59,8 @@ exports.createTask = function(req,res){
         name:req.body.name,
         description:req.body.description,
         idUs: req.body.idUs,
-        usName: req.body.usName
+        usName: req.body.usName,
+        etat:"todo"
     });
 
     task.save(function(err, Task){
@@ -152,6 +153,13 @@ exports.updateSprint = function (req, res) {
             console.error(err);
             res.status(500).send(err);
         }
+    })
+};
+
+
+exports.UpdateStateFromTasks = function (req, res) {
+    taskModel.findById(req.params.id, function(err, state){
+
     })
 };
 

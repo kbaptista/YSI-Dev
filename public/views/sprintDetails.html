@@ -1,3 +1,5 @@
+<div id="modalKanbanSprint" class="modal fade" role="dialog">
+</div>
 <div id="modalCreateTask" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
@@ -34,6 +36,9 @@
 <div class="panel-heading">
     <div class="panel-title"><h2>Sprints project : {{projectName}}</h2>
         <h3>Sprint {{sprintName}}</h3>
+    </div>
+    <div class="panel-options">
+        <button type="button" class="btn btn-default pull-right" ><a href="#/project/{{projectId}}/sprints/{{sprintName}}/kanban">Kanban sprint</a></button>
     </div>
     <div class="panel-options">
         <button type="button" class="btn btn-default pull-right" data-toggle="modal" data-target="#modalCreateTask">Add Task</button>
