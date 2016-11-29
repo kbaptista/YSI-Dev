@@ -4,8 +4,9 @@ var taskSchema = new mongoose.Schema();
 taskSchema.add({
     name : String,
     description : String,
-    etat : String,
-    idUs: String
+    idUs: String,
+    usName: String,
+    etat : String
 });
 
 var Task = mongoose.model('Task', taskSchema);
