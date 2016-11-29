@@ -1,3 +1,37 @@
+.simpleDemo ul[dnd-list],
+.simpleDemo ul[dnd-list] > li {
+    position: relative;
+}
+
+.simpleDemo ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+.simpleDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+.simpleDemo ul[dnd-list] .dndPlaceholder {
+    display: block;
+    background-color: #ddd;
+    min-height: 30px;
+}
+
+.simpleDemo ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: block;
+    padding: 5px 5px;
+    margin-bottom: 1px;
+}
+
+.simpleDemo ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     background-color: #f7f7f7;

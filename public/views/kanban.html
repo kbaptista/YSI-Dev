@@ -1,0 +1,36 @@
+<div class="panel-heading">
+    <div class="panel-title"><h2>kanban Sprint : {{sprintName}}</h2>
+    </div>
+</div>
+<div class="panel-body">
+<div class="simpleDemo row">
+
+    <div class="col-md-8">
+        <div class="row">
+            <div ng-repeat="(listName, list) in models.lists" class="col-md-4">
+                <div class="">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">{{listName}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <ul dnd-list="list">
+                             <li ng-repeat="item in list"
+                                dnd-draggable="item"
+                                dnd-moved="list.splice($index, 1)"
+                                dnd-effect-allowed="move"
+                                dnd-selected="models.selected = item"
+                                ng-class="{'selected': models.selected === item}"
+                            >
+                                {{item.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+</div>
