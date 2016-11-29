@@ -67,7 +67,7 @@
 
                     <label>Name : </label> {{project.name}}<br>
                     <label>Description : </label> {{project.description}} <br>
-                    <label>Product Owner : </label> {{project.po}} <br>
+                    <label>Product Owner : </label> {{project.productOwner.name}} <br>
                     <label>Developpers : </label><br>
                     <label>Starting date : </label> {{project.startDate | date : "MM/dd/yyyy"}} <br>
                     <label>Duration :</label> {{project.nbSprint}} sprints of {{project.dureeSprint}} weeks<br>

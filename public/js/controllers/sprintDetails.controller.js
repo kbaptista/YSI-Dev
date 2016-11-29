@@ -26,9 +26,17 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
     });
 
     $scope.createTask = function(){
-        SprintService.createTask($scope.task).success(function(taskCreated){
+        var idUS = $scope.task.us._id;
+        var nameUs = $scope.task.us.name;
+        var taskToCreate = JSON.stringify({
+           name: $scope.task.name,
+            description: $scope.task.description,
+            idUs: idUS,
+            usName: nameUs
+        });
+        SprintService.createTask(taskToCreate).success(function(taskCreated){
             var data = {"task" : taskCreated};
-            UsService.addTaskToUs($scope.task.idUs, data).success(function(usUpdated){
+            UsService.addTaskToUs(idUS, data).success(function(usUpdated){
                 SprintService.getUsFromSprint(sprintId).success(function(usCurrentSprint){
                     $scope.tasks = usCurrentSprint.tasks;
                     $route.reload();
