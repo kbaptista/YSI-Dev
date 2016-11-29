@@ -6,7 +6,10 @@ taskSchema.add({
     description : String,
     idUs: String,
     usName: String,
-    etat : String
+    state : {
+        type: String,
+        enum: ['todo', 'ongoing','done']
+    }
 });
 
 var Task = mongoose.model('Task', taskSchema);

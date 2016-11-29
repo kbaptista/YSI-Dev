@@ -32,7 +32,8 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
            name: $scope.task.name,
             description: $scope.task.description,
             idUs: idUS,
-            usName: nameUs
+            usName: nameUs,
+            state: 'todo'
         });
         SprintService.createTask(taskToCreate).success(function(taskCreated){
             var data = {"task" : taskCreated};
