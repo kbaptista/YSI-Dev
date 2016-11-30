@@ -23,6 +23,7 @@ var project = require('./app/routes/project');
 var authenticate = require('./app/routes/authenticate');
 var usersStories = require('./app/routes/userStories');
 var sprint = require('./app/routes/sprint');
+var traceability = require('./app/routes/traceability');
 
 var app = express();
 var corsOptions = {
@@ -91,5 +92,7 @@ app.get('/tasks',sprint.getTasks);
 app.delete('/tasks/:id',sprint.removeTask);
 app.get('/tasks/:id', sprint.getTaskById);
 app.put('/tasks/:id', sprint.UpdateStateTask);
+
+app.put('/traceability/:id',traceability.AddCommitToUs);
 
 app.listen(port);

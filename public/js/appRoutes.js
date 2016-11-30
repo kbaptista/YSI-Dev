@@ -63,6 +63,11 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             controller: 'SprintDetailsController'
         })
 
+        .when('/project/:id/traceability',{
+            templateUrl: '/YSI-Dev/public/views/traceability.html',
+            controller: 'traceabilityController'
+        })
+
         .otherwise({redirectTo : '/home'});
 
 }]);
