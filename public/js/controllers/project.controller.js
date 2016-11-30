@@ -17,7 +17,6 @@ angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,
 
     AuthenticationService.userConnected().success(function(user){
         currentUser = user;
-        console.log(currentUser.email);
         if(AuthenticationService.isAuthenticated()) {
             ProjectService.getProjects().success(function (allProjects) {
                     var userProjecs = []; /* display only project if current is a developper of a project or the product Owner */
@@ -25,14 +24,12 @@ angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,
                         elemProject.developpers.forEach(function(elemDev){
                             if(elemDev.email.localeCompare(currentUser.email) == 0){
                                 userProjecs.push(elemProject);
-                                console.log(elemDev.email.localeCompare(currentUser.email));
                             }
                         });
                         if(elemProject.productOwner.email.localeCompare(currentUser.email) == 0){
                             userProjecs.push(elemProject);
                         }
                     });
-                    console.log(userProjecs);
                     $scope.projects = userProjecs;
                 })
                 .error(function (status, data) {
@@ -62,7 +59,6 @@ angular.module('ProjectCtrl',[]).controller('ProjectController',function($scope,
 
 
     $scope.createProject = function createProject(name,desc,nbSprint,start,duration, isPrivate){ /* by default, Product Owner = Scrum Master = Current User */
-        console.log(isPrivate);
         if(name !== undefined && desc !== undefined && nbSprint !== undefined && start !== undefined && duration !== undefined && isPrivate !== undefined){
             ProjectService.createProject(name,desc,nbSprint,start,duration, isPrivate, currentUser).success(function(project){
                     /* Create Sprints of the project HERE
