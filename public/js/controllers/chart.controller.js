@@ -8,15 +8,31 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
     $scope.projectName = ProjectService.getName();
     var project_id = $rootScope.projectId;
     var numberSprint = [];
+    var sprintsIds = [];
+    var expectedEffortSprint = [];
+    var tmp = 0;
 
     SprintService.getSprintFromProject(project_id).success(function(sprints){
         for(var i = 0; i < sprints.length; ++i){
             numberSprint.push(sprints[i].name);
+            sprintsIds.push(sprints[i]._id);
+        }
+
+        for(var i = 0; i < sprintsIds.length; ++i){
+            SprintService.getUsFromSprint(sprintsIds[i]).success(function(us){
+                tmp = 0;
+               for(var i = 0; i < us.length; ++i){
+                   tmp += us[i].effort;
+               }
+                expectedEffortSprint.push(tmp);
+                console.log(expectedEffortSprint);
+            });
         }
 
         /** Construct the Chart only when data fetch **/
         /* expected = get effort of each us per sprint */
         /* real = get effort of each us DONE per sprint */
+
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
