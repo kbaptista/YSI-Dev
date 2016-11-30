@@ -143,6 +143,7 @@ exports.updateSprint = function (req, res) {
             if(sprint){
                 if(req.body.us)
                     sprint.us = req.body.us._id;
+
                 sprint.save();
                 res.status(200).send(sprint);
             }

@@ -72,6 +72,9 @@ exports.updateUserStory = function (req, res) {
                     us.priority = req.body.priority;
                 if(req.body.sprint)
                     us.sprint = req.body.sprint;
+                if(req.body.tasks){
+                    updateNameById(us.tasks,req.body.tasks._id,req.body.tasks.state)
+                }
                 us.save();
                 res.status(200).send(us);
             }
@@ -138,3 +141,16 @@ exports.getTasksFromUs = function(req,res){
        }
     });
 };
+
+function updateNameById(obj, id, value) {
+    Object.keys(obj).some(function(key) {
+        if (obj[key]._id == id) {
+            obj[key].state = value;
+            return true;  // Stops looping
+        }
+        // Recurse over lower objects
+        else if (obj[key].groups) {
+            return updateNameById(obj[key].groups, id, value);
+        }
+    })
+}
