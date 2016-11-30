@@ -21,5 +21,7 @@ angular.module('ysi-app',
         'SprDetailsCtrl',
         'ChartCtrl',
         'KanbanCtrl',
-        'kanbanServ'
+        'kanbanServ',
+        'traceabilityCtrl',
+        'traceabilityServ'
     ]);
