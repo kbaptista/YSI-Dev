@@ -15,6 +15,8 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
         }
 
         /** Construct the Chart only when data fetch **/
+        /* expected = get effort of each us per sprint */
+        /* real = get effort of each us DONE per sprint */
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
