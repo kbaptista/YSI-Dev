@@ -32,7 +32,6 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
 
     // Model to JSON for demo purpose
     $scope.$watch('models', function(model) {
-        //  console.log(model);
         var todo = model.lists.TODO;
         var ongoing = model.lists.ONGOING;
         var done = model.lists.DONE;
@@ -62,7 +61,6 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
                         _id: taskRes._id
                     }
                 });
-                console.log(taskRes);
                 UsService.updateUserStory(idUs,dataTask).success(function(usRes){ // update US to update the reference in the sprint
 
                 });

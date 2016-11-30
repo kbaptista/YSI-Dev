@@ -4,8 +4,6 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     }
     setDisplayMenu();
 
-
-    var usInSprint = [];
     var project_id = $rootScope.projectId;
     $scope.selected = {};
     $scope.projectName = ProjectService.getName();
@@ -16,8 +14,6 @@ angular.module('SprCtrl',[]).controller('SprintController', function($rootScope,
     $scope.setIdSprint = function(idSprint){
         SprintService.setSprintId(idSprint);
     };
-
-
 
     SprintService.getSprintFromProject(project_id).success(function(sprints) {
         sprints.forEach(function (element) {
