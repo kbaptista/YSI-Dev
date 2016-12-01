@@ -40,7 +40,9 @@ exports.createSprint = function(req,res){
         startDate : req.body.startDate,
         deadLine :req.body.deadLine,
         us: req.body.us,
-        idProject :req.body.idProject
+        idProject :req.body.idProject,
+        totalEffort: 0,
+        effortDone: 0
     });
 
     sprint.save(function(err,Sprint){
@@ -110,13 +112,14 @@ exports.addUsToSprint = function(req, res){
                     sprint.us.forEach(function(element){
                         console.log(element.toString());
                         console.log(req.body.us._id);
-                       if(element.toString() === req.body.us._id ){ // US déjà présente dans le sprint
+                        if(element.toString() === req.body.us._id ){ // US déjà présente dans le sprint
                             find = true;
-                       }
+                        }
                     });
                     if(find == false) {
                         sprint.usNames.push(req.body.usNames);
                         sprint.us.push(req.body.us._id);
+                        sprint.totalEffort += req.body.us.effort;
                         sprint.save();
                         res.status(200).send(sprint);
                     }
@@ -143,6 +146,10 @@ exports.updateSprint = function (req, res) {
             if(sprint){
                 if(req.body.us)
                     sprint.us = req.body.us._id;
+
+                if(req.body.effortDone){
+                    sprint.effortDone += req.body.effortDone;
+                }
 
                 sprint.save();
                 res.status(200).send(sprint);
@@ -192,42 +199,42 @@ exports.getTaskById = function(req,res){
 };
 
 exports.getTasksFromSprint = function(req,res){
-  sprintModel.findById(req.params.id, function(err,sprint){
-    if(!err){
-        if(sprint){
-            var tasks = [];
-            sprint.us.forEach(function(elemUS){
-                elemUS.tasks.forEach(function(elemTask){
-                    tasks.push(elemTask);
+    sprintModel.findById(req.params.id, function(err,sprint){
+        if(!err){
+            if(sprint){
+                var tasks = [];
+                sprint.us.forEach(function(elemUS){
+                    elemUS.tasks.forEach(function(elemTask){
+                        tasks.push(elemTask);
+                    });
                 });
-            });
-            res.status(200).send(tasks);
+                res.status(200).send(tasks);
+            }
+            else{
+                res.status(404).send(err);
+            }
         }
         else{
-            res.status(404).send(err);
+            console.error(err);
+            res.status(500).send(err);
         }
-    }
-      else{
-        console.error(err);
-        res.status(500).send(err);
-    }
-  });
+    });
 };
 
 exports.getUsFromSprint = function(req,res){
-  sprintModel.findById(req.params.id).populate('us').exec(function(err,sprint){
-      if(!err){
-          if(sprint){
-              res.status(200).send(sprint.us);
-          }
-          else{
-              res.status(404).send(err);
-          }
-      }
-      else{
-          console.error(err);
-          res.status(500).send(err);
-      }
+    sprintModel.findById(req.params.id).populate('us').exec(function(err,sprint){
+        if(!err){
+            if(sprint){
+                res.status(200).send(sprint.us);
+            }
+            else{
+                res.status(404).send(err);
+            }
+        }
+        else{
+            console.error(err);
+            res.status(500).send(err);
+        }
 
-  });
+    });
 };
