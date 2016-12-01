@@ -32,8 +32,6 @@
         <thead>
         <tr>
             <th>Name</th>
-            <th>Nbr total of tasks</th>
-            <th>Nbr tasks Done</th>
             <th>Commit</th>
             <th>Add Commit</th>
         </tr>
@@ -41,8 +39,6 @@
         <tbody>
         <tr ng-repeat="us in userStories | filter : query">
             <td>{{us.name}}</td>
-            <td>{{us.tasks.length}}</td>
-            <td></td>
             <td>{{us.commit}}</td>
             <td> <button type="submit" class="glyphicon glyphicon-plus" data-toggle="modal" data-target="#modalAddCommit" ng-click="getUserStory(us._id)"></button></td>
         </tr>
