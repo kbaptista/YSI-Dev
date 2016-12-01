@@ -63,7 +63,7 @@ angular.module('appRoutes',[]).config(['$routeProvider', function($routeProvider
             controller: 'SprintDetailsController'
         })
 
-        .when('/project/:id/traceability',{
+        .when('/project/:id/tracability',{
             templateUrl: '/YSI-Dev/public/views/traceability.html',
             controller: 'traceabilityController'
         })
