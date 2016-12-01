@@ -71,7 +71,6 @@ app.post('/projects', passport.authenticate('jwt', { session : false}),project.c
 
 app.get('/userStories/:id/project',usersStories.UsFromProject);
 app.post('/userStories',usersStories.createUserStories);
-
 app.delete('/userStories/:id',usersStories.removeUserStory);
 app.get('/userStories/:id',usersStories.getUserStoryById);
 app.put('/userStories/:id',usersStories.updateUserStory);

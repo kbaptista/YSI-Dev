@@ -15,6 +15,8 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
     var tmpSum = 0;
     var sum = 0;
 
+
+
     SprintService.getSprintFromProject(project_id).success(function(sprints){
         for(var i = 0; i < sprints.length; ++i){
             numberSprint.push(sprints[i].name);

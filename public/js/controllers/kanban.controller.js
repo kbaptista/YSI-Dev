@@ -2,7 +2,7 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
     function setDisplayMenu() {
         $rootScope.displayProjectMenu = true;
     }
-
+    var project_id = $rootScope.projectId;
     var usCurrentSprint = [];
     var sprintId = SprintService.getSprintId();
 
@@ -30,7 +30,7 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
         lists: {"TODO": [], "ONGOING": [], "DONE": []}
     };
 
-    // Model to JSON for demo purpose
+    // watch the change on kanban
     $scope.$watch('models', function(model) {
         var todo = model.lists.TODO;
         var ongoing = model.lists.ONGOING;
@@ -106,6 +106,51 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
                 });
             });
         }
+
+        /* calculate the effort of each US Done here (<=> each task of the US DONE) */
+        SprintService.getUsFromSprint(sprintId).success(function(usRes){
+            for(var i = 0; i < usRes.length; ++i){
+                var tmp = 0;
+                var id = usRes[i]._id;
+                UsService.getTasksFromUs(id).success(function(tasksRes){
+                    for(var j = 0; j < tasksRes.length; ++j) {
+                        if (tasksRes[j].state.localeCompare('done') == 0) {
+                            ++tmp;
+                        }
+                    }
+                    if(tmp == tasksRes.length){
+                        var data = JSON.stringify({
+                            state: 'done'
+                        });
+                        UsService.updateUserStory(id,data).success(function(usNewState){
+                            console.log(usNewState.effort);
+                            var data = JSON.stringify({
+                               effortDone: usNewState.effort
+                            });
+                            SprintService.updateSprint(sprintId,data).success(function(sprintRes){
+
+                            })
+                        });
+                    }
+                });
+            }
+        });
+
+        /* Add effort of each US done to the right sprint */
+        /*SprintService.getUsFromSprint(sprintId).success(function(usRes){
+           for(var i = 0; i < usRes.length; ++i) {
+               if (usRes[i].state.localeCompare('done') == 0) {
+                   var effort = usRes[i].effort;
+                   return;
+               }
+           }
+                   var data = JSON.stringify({
+                       effortDone: effort
+                   });
+                   SprintService.updateSprint(sprintId,data).success(function(sprintRes){
+
+                   });
+        }); */
 
     }, true);
 

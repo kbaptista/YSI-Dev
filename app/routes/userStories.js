@@ -24,7 +24,8 @@ exports.createUserStories = function(req,res){
         effort : req.body.effort,
         priority :req.body.priority,
         idProject :req.body.idProject,
-        sprint: req.body.sprint
+        sprint: req.body.sprint,
+        state: 'todo'
     });
 
     us.save(function(err,Us){
@@ -75,6 +76,8 @@ exports.updateUserStory = function (req, res) {
                 if(req.body.tasks){
                     updateNameById(us.tasks,req.body.tasks._id,req.body.tasks.state)
                 }
+                if(req.body.state)
+                    us.state = req.body.state;
                 us.save();
                 res.status(200).send(us);
             }
