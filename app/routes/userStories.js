@@ -88,6 +88,24 @@ exports.updateUserStory = function (req, res) {
     });
 };
 
+exports.addTracabilityToUserStory = function(req,res){
+  US.findById(req.params.id, function(err,us){
+      if(!err){
+          if(us){
+              us.commit = req.body.commit;
+              us.save();
+              res.status(200).send(us);
+          }
+          else{
+              res.status(404).send(err);
+          }
+      }
+      else{
+          res.status(500).send(err);
+      }
+  })
+};
+
 exports.addTaskToUserStory = function(req,res){
   var find = false;
     US.findById(req.params.id, function(err, us){

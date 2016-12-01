@@ -3,7 +3,6 @@ angular.module('UsCtrl',[]).controller('UsController', function($scope,$location
         $rootScope.displayProjectMenu = true;
     }
     function setProjectName(){
-        console.log('reload');
         $scope.projectName = ProjectService.getName();
     }
 

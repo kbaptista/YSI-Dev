@@ -39,7 +39,10 @@ angular.module('traceabilityCtrl',[]).controller('traceabilityController', funct
     };
 
     $scope.AddCommitToUs = function (){
-        traceabilityService.AddCommitToUs($scope.UserStory._id, $scope.commit).success(function(data){
+        var data = JSON.stringify({
+            commit: $scope.commit
+        });
+        traceabilityService.AddCommitToUs($scope.UserStory._id, data).success(function(data){
             $route.reload();
             $('#modalAddCommit').modal('hide');
         })

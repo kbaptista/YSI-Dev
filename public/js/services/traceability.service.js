@@ -4,11 +4,11 @@ angular.module('traceabilityServ', []).factory('traceabilityService', function($
 
         AddCommitToUs: function (id,commit) {
             return $http({
-                method: 'PUT',
-                url: API_ENDPOINT.url + '/traceability/'+ id,
+                method: 'POST',
+                url: API_ENDPOINT.url + '/userStories/'+ id + '/tracability',
                 headers: {'Content-Type': 'application/json'},
                 data: commit
             });
-        },
+        }
     }
 });

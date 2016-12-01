@@ -77,6 +77,7 @@ app.get('/userStories/:id',usersStories.getUserStoryById);
 app.put('/userStories/:id',usersStories.updateUserStory);
 app.post('/userStories/:id/tasks', usersStories.addTaskToUserStory);
 app.get('/userStories/:id/tasks', usersStories.getTasksFromUs);
+app.post('/userStories/:id/tracability', usersStories.addTracabilityToUserStory);
 
 app.post('/sprints',sprint.createSprint);
 app.delete('/sprints/:id',sprint.removeSprint);
@@ -92,7 +93,5 @@ app.get('/tasks',sprint.getTasks);
 app.delete('/tasks/:id',sprint.removeTask);
 app.get('/tasks/:id', sprint.getTaskById);
 app.put('/tasks/:id', sprint.UpdateStateTask);
-
-app.put('/traceability/:id',traceability.AddCommitToUs);
 
 app.listen(port);
