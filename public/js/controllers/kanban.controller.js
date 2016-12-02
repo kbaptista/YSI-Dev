@@ -111,11 +111,12 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
         SprintService.getUsFromSprint(sprintId).success(function(usRes){
             for(var i = 0; i < usRes.length; ++i){
                 var tmp = 0;
-                var id = usRes[i]._id;
-                UsService.getTasksFromUs(id).success(function(tasksRes){
+               // var id = usRes[i]._id;
+                UsService.getTasksFromUs(usRes[i]._id).success(function(tasksRes){
                     for(var j = 0; j < tasksRes.length; ++j) {
                         if (tasksRes[j].state.localeCompare('done') == 0) {
                             ++tmp;
+                            var id = tasksRes[j].idUs;
                         }
                     }
                     if(tmp == tasksRes.length){
@@ -123,7 +124,6 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
                             state: 'done'
                         });
                         UsService.updateUserStory(id,data).success(function(usNewState){
-                            console.log(usNewState.effort);
                             var data = JSON.stringify({
                                effortDone: usNewState.effort
                             });
