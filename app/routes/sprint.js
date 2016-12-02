@@ -60,6 +60,7 @@ exports.createTask = function(req,res){
         description:req.body.description,
         idUs: req.body.idUs,
         usName: req.body.usName,
+        developper:req.body.developper,
         state:req.body.state
     });
 
@@ -157,6 +158,30 @@ exports.updateSprint = function (req, res) {
     })
 };
 
+
+exports.updateTask = function (req, res) {
+    taskModel.findById(req.params.id, function(err, task){
+        if(!err){
+            if(task){
+                if(req.body.name)
+                    task.name = req.body.name;
+                if(req.body.description)
+                    task.description = req.body.description;
+                if(req.body.developper)
+                    task.developper = req.body.developper.name;
+                task.save();
+                res.status(200).send(task);
+            }
+            else{
+                res.status(404).send(err);
+            }
+        }
+        else{
+            console.error(err);
+            res.status(500).send(err);
+        }
+    });
+};
 
 exports.UpdateStateTask = function (req, res) {
     taskModel.findById(req.params.id, function(err, task){

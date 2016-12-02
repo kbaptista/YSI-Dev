@@ -93,5 +93,6 @@ app.get('/tasks',sprint.getTasks);
 app.delete('/tasks/:id',sprint.removeTask);
 app.get('/tasks/:id', sprint.getTaskById);
 app.put('/tasks/:id', sprint.UpdateStateTask);
+app.post('/tasks/:id', sprint.updateTask);
 
 app.listen(port);

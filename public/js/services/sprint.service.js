@@ -108,14 +108,25 @@ angular.module('SprServ', []).factory('SprintService', function($http, API_ENDPO
         },
 
         getUsFromSprint: function(id){
+            return $http({
+                method: 'GET',
+                url: API_ENDPOINT.url + '/sprints/' + id + '/us'
+            });
+        },
 
-        return $http({
-            method: 'GET',
-            url: API_ENDPOINT.url + '/sprints/' + id + '/us'
-        });
+        getTaskById: function(id){
+            return $http({
+                method: 'GET',
+                url: API_ENDPOINT.url + '/tasks/'+id
+            });
+        },
 
-    }
-}
-
-
-});
+        updateTask: function (id,task) {
+            return $http({
+                method: 'POST',
+                url: API_ENDPOINT.url + '/tasks/'+ id,
+                headers: {'Content-Type': 'application/json'},
+                data: task,
+            });
+        }
+}});

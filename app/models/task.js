@@ -6,6 +6,7 @@ taskSchema.add({
     description : String,
     idUs: String,
     usName: String,
+    developper : String,
     state : {
         type: String,
         enum: ['todo', 'ongoing','done']
