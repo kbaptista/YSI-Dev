@@ -10,7 +10,11 @@ usSchema.add({
     tasks : [Task],
     sprint: String,
     idProject : String,
-    commit : String
+    commit : String,
+    state: {
+        type: String,
+        enum: ['todo','done']
+    }
 });
 
 var UserStory = mongoose.model('UserStroy',usSchema);

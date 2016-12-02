@@ -3,44 +3,55 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
         $rootScope.displayProjectMenu = true;
     }
     setDisplayMenu();
-    var ctx = document.getElementById('myChart');
 
     $scope.projectName = ProjectService.getName();
     var project_id = $rootScope.projectId;
     var numberSprint = [];
     var sprintsIds = [];
+    var totalEffortAllSprints = 0;
+    var requests = 0;
+
     var expectedEffortSprint = [];
-    var tmp = 0;
+    var tmpSum = 0;
+    var sum = 0;
 
-    function launchChart(callback){
+
+
+    SprintService.getSprintFromProject(project_id).success(function(sprints){
+        for(var i = 0; i < sprints.length; ++i){
+            numberSprint.push(sprints[i].name);
+            sprintsIds.push(sprints[i]._id);
+            sum += sprints[i].totalEffort;
+        }
+        numberSprint.unshift('Start');
+        expectedEffortSprint.push(sum);
+        tmpSum = sum;
         SprintService.getSprintFromProject(project_id).success(function(sprints){
-            for(var i = 0; i < sprints.length; ++i){
-                numberSprint.push(sprints[i].name);
-                sprintsIds.push(sprints[i]._id);
+            for(var i = 0; i < sprints.length; ++i) {
+                tmpSum -= sprints[i].totalEffort;
+                expectedEffortSprint.push(tmpSum);
             }
-
-            for(var i = 0; i < sprintsIds.length; ++i){
-                SprintService.getUsFromSprint(sprintsIds[i]).success(function(us){
-                    tmp = 0;
-                    for(var j = 0; j < us.length; ++j){
-                        tmp += us[j].effort;
-                        console.log(tmp + ' ' + j);
-                    }
-                    expectedEffortSprint.push(tmp);
-                    //console.log(expectedEffortSprint);
-                });
-            }
-
-
-
         });
-        callback(); // callback to be sure that array are build before the chart configuration
-    }
+
+        for(var i = 0; i < sprintsIds.length; ++i){
+            ++requests;
+            SprintService.getSprintById(sprintsIds[i]).success(function(sprintRes){
+                totalEffortAllSprints += sprintRes.totalEffort;
+
+                if(requests == sprintsIds.length) {
+                    buildChart(expectedEffortSprint);
+                }
+            });
+
+        }
+    });
 
     /** Construct the Chart only when data fetch **/
     /* expected = get effort of each us per sprint */
     /* real = get effort of each us DONE per sprint */
-    launchChart(function(){
+
+    function buildChart(datas) {
+        var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -65,7 +76,7 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: expectedEffortSprint,
+                        data: datas,
                         spanGaps: false
                     },
                     {
@@ -98,12 +109,12 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero: true
                         }
                     }]
                 }
             }
         });
-    });
+    }
 
 });
