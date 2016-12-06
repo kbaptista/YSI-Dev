@@ -100,7 +100,7 @@
                 <td>{{us.description}}</td>
                 <td>{{us.effort}}</td>
                 <td>{{us.priority}}</td>
-                <td><button id={{us._id}} class="btn btn-default" ng-click="updateUsDone(us._id)">Done</button></td>
+                <td><button ng-disabled="us.isDisabled" id={{us._id}} class="btn btn-default" ng-click="updateUsDone(us,us._id)">Done</button></td>
             </tr>
             </tbody>
         </table>

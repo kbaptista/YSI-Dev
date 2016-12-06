@@ -7,6 +7,7 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
     var sprintId;
     var usCurrentSprint = [];
 
+
     $scope.usSprints = [];
     $scope.project = [];
     $scope.developpers = [];
@@ -34,7 +35,8 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
         $scope.developpers = $scope.project.developpers;
     });
 
-    $scope.updateUsDone = function(id){
+    $scope.updateUsDone = function(us,id){
+        us.isDisabled = true;
         var data = JSON.stringify({state: 'done'});
         UsService.updateUserStory(id, data).success(function(usDone){
             var data = JSON.stringify({effortDone: usDone.effort});
@@ -42,6 +44,7 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
 
             });
         });
+
     };
     $scope.createTask = function(){
         var idUS = $scope.task.us._id;
