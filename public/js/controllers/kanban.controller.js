@@ -14,11 +14,11 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
 
         for (var i = 0; i < usCurrentSprint.length; ++i) {
             if(usCurrentSprint[i].state=="todo")
-                $scope.models.lists.TODO.push({name: usCurrentSprint[i].name, idtask: usCurrentSprint[i]._id, idUS: usCurrentSprint[i].idUs, developper: usCurrentSprint[i].developper});
+                $scope.models.lists.TODO.push({name: usCurrentSprint[i].name, idtask: usCurrentSprint[i]._id, idUS: usCurrentSprint[i].idUs, developper: usCurrentSprint[i].developper, usName: usCurrentSprint[i].usName});
             if(usCurrentSprint[i].state=="ongoing")
-                $scope.models.lists.ONGOING.push({name: usCurrentSprint[i].name, idtask: usCurrentSprint[i]._id, idUS: usCurrentSprint[i].idUs, developper: usCurrentSprint[i].developper});
+                $scope.models.lists.ONGOING.push({name: usCurrentSprint[i].name, idtask: usCurrentSprint[i]._id, idUS: usCurrentSprint[i].idUs, developper: usCurrentSprint[i].developper,usName: usCurrentSprint[i].usName});
             if(usCurrentSprint[i].state=="done")
-                $scope.models.lists.DONE.push({name: usCurrentSprint[i].name, idtask: usCurrentSprint[i]._id, idUS: usCurrentSprint[i].idUs, developper: usCurrentSprint[i].developper});
+                $scope.models.lists.DONE.push({name: usCurrentSprint[i].name, idtask: usCurrentSprint[i]._id, idUS: usCurrentSprint[i].idUs, developper: usCurrentSprint[i].developper,usName: usCurrentSprint[i].usName});
         }
     });
 
@@ -30,7 +30,7 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
         lists: {"TODO": [], "ONGOING": [], "DONE": []}
     };
 
-    // watch the change on kanban
+    // watch the change on Kanban and save it
     $scope.$watch('models', function(model) {
         var todo = model.lists.TODO;
         var ongoing = model.lists.ONGOING;

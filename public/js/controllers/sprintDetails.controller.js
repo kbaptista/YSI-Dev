@@ -71,8 +71,6 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
         SprintService.updateTask($scope.TASK._id, $scope.TASK).success(function(data){
             $route.reload();
             $('#modalUpdateTask').modal('hide');
-            console.log(">>>>");
-            console.log($scope.TASK)
         })
             .error(function(status,data){
                 console.log('status error = ' + status);

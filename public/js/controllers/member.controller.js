@@ -23,6 +23,7 @@ angular.module('MemberCtrl',[ 'angularUtils.directives.dirPagination']).controll
             find:false,
             email: ''
         };
+
         if(AuthenticationService.isAuthenticated()){
             $scope.projects.developpers.forEach(function(element){ /* check if user is already in the project */
                 if(element.email == $scope.model.selectedOccurence.email){
