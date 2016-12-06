@@ -108,10 +108,10 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
         }
 
         /* calculate the effort of each US Done here (<=> each task of the US DONE) */
-        SprintService.getUsFromSprint(sprintId).success(function(usRes){
+        /*SprintService.getUsFromSprint(sprintId).success(function(usRes){
             for(var i = 0; i < usRes.length; ++i){
                 var tmp = 0;
-               // var id = usRes[i]._id;
+                var tabTasks = usRes[i].tasks;
                 UsService.getTasksFromUs(usRes[i]._id).success(function(tasksRes){
                     for(var j = 0; j < tasksRes.length; ++j) {
                         if (tasksRes[j].state.localeCompare('done') == 0) {
@@ -119,11 +119,14 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
                             var id = tasksRes[j].idUs;
                         }
                     }
-                    if(tmp == tasksRes.length){
+
+
+                    if(tmp == tabTasks.length){
                         var data = JSON.stringify({
                             state: 'done'
                         });
-                        UsService.updateUserStory(id,data).success(function(usNewState){
+                        console.log('all tasks done');
+                        /*UsService.updateUserStory(id,data).success(function(usNewState){
                             var data = JSON.stringify({
                                effortDone: usNewState.effort
                             });
@@ -134,7 +137,7 @@ angular.module('KanbanCtrl',['dndLists']).controller('KanbanController', functio
                     }
                 });
             }
-        });
+        });*/
 
         /* Add effort of each US done to the right sprint */
         /*SprintService.getUsFromSprint(sprintId).success(function(usRes){

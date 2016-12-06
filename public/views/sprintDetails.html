@@ -91,22 +91,24 @@
                 <th>Description</th>
                 <th>Effort</th>
                 <th>Priority</th>
+                <th>State</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="us in usSprints track by $index">
-                <td>{{us.name}}</td>
+                <td class="text-uppercase">{{us.name}}</td>
                 <td>{{us.description}}</td>
                 <td>{{us.effort}}</td>
                 <td>{{us.priority}}</td>
+                <td><button id={{us._id}} class="btn btn-default" ng-click="updateUsDone(us._id)">Done</button></td>
             </tr>
             </tbody>
         </table>
     </div>
     <div class="page-header">
-    <div class="panel-title">
-        <h2>Tasks</h2>
-    </div>
+        <div class="panel-title">
+            <h2>Tasks</h2>
+        </div>
         <div class="panel-options">
             <input type="text" placeholder="Search" class="input input-group-sm" ng-model="queryTask">
         </div>
@@ -127,7 +129,7 @@
             <tr ng-repeat="task in tasks | filter : queryTask track by task._id">
                 <td>{{task.name}}</td>
                 <td>{{task.description}}</td>
-                <td>{{task.usName}}</td>
+                <td class="text-uppercase">{{task.usName}}</td>
                 <td>{{task.developper}}</td>
                 <td> <button type="button" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#modalUpdateTask" ng-click="getTask(task._id)"></button></td>
                 <td><button class="glyphicon glyphicon-trash" ng-click="removeTask(task._id)"></button></td>

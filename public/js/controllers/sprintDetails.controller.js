@@ -19,12 +19,12 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
     sprintId = SprintService.getSprintId();
 
     SprintService.getUsFromSprint(sprintId).success(function(usRes){
-       $scope.usSprints = usRes;
+        $scope.usSprints = usRes;
     });
 
     SprintService.getUsFromSprint(sprintId).success(function(us) {
         us.forEach(function(element){
-           usCurrentSprint = usCurrentSprint.concat(element.tasks);
+            usCurrentSprint = usCurrentSprint.concat(element.tasks);
         });
         $scope.tasks = usCurrentSprint;
     });
@@ -32,8 +32,17 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
     ProjectService.getProjectById($scope.projectId).success(function(project){
         $scope.project = project;
         $scope.developpers = $scope.project.developpers;
-   });
+    });
 
+    $scope.updateUsDone = function(id){
+        var data = JSON.stringify({state: 'done'});
+        UsService.updateUserStory(id, data).success(function(usDone){
+            var data = JSON.stringify({effortDone: usDone.effort});
+            SprintService.updateSprint(sprintId,data).success(function(sprintUsDone){
+
+            });
+        });
+    };
     $scope.createTask = function(){
         var idUS = $scope.task.us._id;
         var nameUs = $scope.task.us.name;
@@ -59,8 +68,8 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
 
     $scope.getTask = function (id) {
         SprintService.getTaskById(id).success(function (data) {
-            $scope.TASK = data;
-        })
+                $scope.TASK = data;
+            })
             .error(function(status,data){
                 console.log('status error = ' + status);
                 console.log('data error = ' + data);
@@ -69,9 +78,9 @@ angular.module('SprDetailsCtrl',[]).controller('SprintDetailsController', functi
 
     $scope.updateTask = function (){
         SprintService.updateTask($scope.TASK._id, $scope.TASK).success(function(data){
-            $route.reload();
-            $('#modalUpdateTask').modal('hide');
-        })
+                $route.reload();
+                $('#modalUpdateTask').modal('hide');
+            })
             .error(function(status,data){
                 console.log('status error = ' + status);
                 console.log('data error = ' + data);

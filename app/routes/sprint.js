@@ -111,8 +111,6 @@ exports.addUsToSprint = function(req, res){
             if(sprint) {
                 if (req.body.us && req.body.usNames) {
                     sprint.us.forEach(function(element){
-                        console.log(element.toString());
-                        console.log(req.body.us._id);
                         if(element.toString() === req.body.us._id ){ // US déjà présente dans le sprint
                             find = true;
                         }
@@ -148,9 +146,8 @@ exports.updateSprint = function (req, res) {
                 if(req.body.us)
                     sprint.us = req.body.us._id;
 
-                if(req.body.effortDone){
+                if(req.body.effortDone)
                     sprint.effortDone += req.body.effortDone;
-                }
 
                 sprint.save();
                 res.status(200).send(sprint);

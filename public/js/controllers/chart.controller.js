@@ -12,8 +12,10 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
     var requests = 0;
 
     var expectedEffortSprint = [];
+    var doneEffortSprint = [];
     var tmpSum = 0;
     var sum = 0;
+    var tmpDone = 0;
 
 
 
@@ -25,11 +27,16 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
         }
         numberSprint.unshift('Start');
         expectedEffortSprint.push(sum);
+        doneEffortSprint.push(sum);
+
         tmpSum = sum;
+        tmpDone = sum;
         SprintService.getSprintFromProject(project_id).success(function(sprints){
             for(var i = 0; i < sprints.length; ++i) {
                 tmpSum -= sprints[i].totalEffort;
+                tmpDone -= sprints[i].effortDone;
                 expectedEffortSprint.push(tmpSum);
+                doneEffortSprint.push(tmpDone);
             }
         });
 
@@ -39,7 +46,7 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
                 totalEffortAllSprints += sprintRes.totalEffort;
 
                 if(requests == sprintsIds.length) {
-                    buildChart(expectedEffortSprint);
+                    buildChart(expectedEffortSprint, doneEffortSprint);
                 }
             });
 
@@ -50,7 +57,7 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
     /* expected = get effort of each us per sprint */
     /* real = get effort of each us DONE per sprint */
 
-    function buildChart(datas) {
+    function buildChart(totalEffort, doneEffort) {
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
             type: 'line',
@@ -76,7 +83,7 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: datas,
+                        data: totalEffort,
                         spanGaps: false
                     },
                     {
@@ -98,7 +105,7 @@ angular.module('ChartCtrl',[]).controller('ChartController', function($scope, $r
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [1, 2, 2, 4],
+                        data: doneEffort,
                         spanGaps: false
                     }
 

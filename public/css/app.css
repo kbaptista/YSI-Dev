@@ -673,6 +673,10 @@ body {
     clear:both;
 }
 
+.greenDone{
+    background-color: #5cb85c;
+}
+
 /* Responsive CSS */
 
 /* Mobile phones */
