@@ -18,6 +18,10 @@
     min-height: 30px;
 }
 
+.home{
+    font-size: medium;
+}
+
 .simpleDemo ul[dnd-list] li {
     background-color: #fff;
     border: 1px solid #ddd;

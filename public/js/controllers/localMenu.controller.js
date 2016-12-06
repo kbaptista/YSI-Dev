@@ -1,5 +1,4 @@
 angular.module('LocalMenuCtrl',[]).controller('LocalMenuController', function() {
-    console.log('-> LocalMenu controller');
 
 })
     .directive('localMenu', function(){
